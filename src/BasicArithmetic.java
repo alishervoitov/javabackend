@@ -21,23 +21,18 @@ public class BasicArithmetic {
         int a = 15;
         int b = 4;
 
-        // Qo'shish
         int sum = a + b;
         System.out.println(a + " + " + b + " = " + sum); // 15 + 4 = 19
 
-        // Ayirish
         int difference = a - b;
         System.out.println(a + " - " + b + " = " + difference); // 15 - 4 = 11
 
-        // Ko'paytirish
         int product = a * b;
         System.out.println(a + " * " + b + " = " + product); // 15 * 4 = 60
 
-        // Bo'lish (butun sonlarda)
         int quotient = a / b;
         System.out.println(a + " / " + b + " = " + quotient); // 15 / 4 = 3
 
-        // Qoldiq
         int remainder = a % b;
         System.out.println(a + " % " + b + " = " + remainder); // 15 % 4 = 3
     }
