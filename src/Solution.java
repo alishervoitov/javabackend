@@ -38,28 +38,73 @@
 //    }
 //}
 
+//import java.util.Arrays;
+//
+//public class Solution {
+//    public int[] twoSum(int[] nums, int target) {
+//        for (int i = 0; i < nums.length; i++) {
+//            for (int j = i + 1; j < nums.length; j++) {
+//                if (nums[i] + nums[j] == target) {
+//                    return new int[]{i, j};
+//                }
+//            }
+//        }
+//        return null;
+//    }
+//
+//    public static void main(String[] args) {
+//        Solution solution = new Solution();
+//
+//        // Test 1
+//        int[] nums1 = {2, 7, 11, 15};
+//        int target1 = 9;
+//        int[] result1 = solution.twoSum(nums1, target1);
+//        System.out.println("Test 1: " + Arrays.toString(result1)); // [0, 1]
+//
+//    }
+//}
+
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Solution {
+
     public int[] twoSum(int[] nums, int target) {
+
         for (int i = 0; i < nums.length; i++) {
             for (int j = i + 1; j < nums.length; j++) {
+
                 if (nums[i] + nums[j] == target) {
                     return new int[]{i, j};
                 }
+
             }
         }
         return null;
     }
 
     public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Array uzunligini kiriting: ");
+        int n = sc.nextInt();
+
+        int[] nums = new int[n];
+
+        System.out.println("Elementlarni kiriting:");
+
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+
+        System.out.print("Target qiymatini kiriting: ");
+        int target = sc.nextInt();
+
         Solution solution = new Solution();
 
-        // Test 1
-        int[] nums1 = {2, 7, 11, 15};
-        int target1 = 9;
-        int[] result1 = solution.twoSum(nums1, target1);
-        System.out.println("Test 1: " + Arrays.toString(result1)); // [0, 1]
+        int[] result = solution.twoSum(nums, target);
 
+        System.out.println("Natija: " + Arrays.toString(result));
     }
 }
