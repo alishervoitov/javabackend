@@ -64,47 +64,64 @@
 //    }
 //}
 
-import java.util.Arrays;
-import java.util.Scanner;
+//import java.util.Arrays;
+//import java.util.Scanner;
+//
+//public class Solution {
+//
+//    public int[] twoSum(int[] nums, int target) {
+//
+//        for (int i = 0; i < nums.length; i++) {
+//            for (int j = i + 1; j < nums.length; j++) {
+//
+//                if (nums[i] + nums[j] == target) {
+//                    return new int[]{i, j};
+//                }
+//
+//            }
+//        }
+//        return null;
+//    }
+//
+//    public static void main(String[] args) {
+//
+//        Scanner sc = new Scanner(System.in);
+//
+//        System.out.print("Array uzunligini kiriting: ");
+//        int n = sc.nextInt();
+//
+//        int[] nums = new int[n];
+//
+//        System.out.println("Elementlarni kiriting:");
+//
+//        for (int i = 0; i < n; i++) {
+//            nums[i] = sc.nextInt();
+//        }
+//
+//        System.out.print("Target qiymatini kiriting: ");
+//        int target = sc.nextInt();
+//
+//        Solution solution = new Solution();
+//
+//        int[] result = solution.twoSum(nums, target);
+//
+//        System.out.println("Natija: " + Arrays.toString(result));
+//    }
+//}
 
 public class Solution {
-
-    public int[] twoSum(int[] nums, int target) {
-
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-
-                if (nums[i] + nums[j] == target) {
-                    return new int[]{i, j};
+    public int lengthOfLongestSubstring(String s) {
+        int res = 0;
+        for (int i = 0; i < s.length(); i++) {
+            Set<Character> charSet = new HashSet<>();
+            for (int j = i; j < s.length(); j++) {
+                if (charSet.contains(s.charAt(j))) {
+                    break;
                 }
-
+                charSet.add(s.charAt(j));
             }
+            res = Math.max(res, charSet.size());
         }
-        return null;
-    }
-
-    public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Array uzunligini kiriting: ");
-        int n = sc.nextInt();
-
-        int[] nums = new int[n];
-
-        System.out.println("Elementlarni kiriting:");
-
-        for (int i = 0; i < n; i++) {
-            nums[i] = sc.nextInt();
-        }
-
-        System.out.print("Target qiymatini kiriting: ");
-        int target = sc.nextInt();
-
-        Solution solution = new Solution();
-
-        int[] result = solution.twoSum(nums, target);
-
-        System.out.println("Natija: " + Arrays.toString(result));
+        return res;
     }
 }
