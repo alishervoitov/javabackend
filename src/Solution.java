@@ -109,19 +109,45 @@
 //    }
 //}
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Scanner;
+
 public class Solution {
+
     public int lengthOfLongestSubstring(String s) {
+
         int res = 0;
+
         for (int i = 0; i < s.length(); i++) {
+
             Set<Character> charSet = new HashSet<>();
+
             for (int j = i; j < s.length(); j++) {
+
                 if (charSet.contains(s.charAt(j))) {
                     break;
                 }
+
                 charSet.add(s.charAt(j));
             }
+
             res = Math.max(res, charSet.size());
         }
+
         return res;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("String kiriting: ");
+        String s = sc.nextLine();
+
+        Solution solution = new Solution();
+
+        int result = solution.lengthOfLongestSubstring(s);
+
+        System.out.println("Eng uzun takrorlanmaydigan substring uzunligi: " + result);
     }
 }
