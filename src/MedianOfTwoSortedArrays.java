@@ -99,46 +99,91 @@
 //        System.out.println("Natija: " + Arrays.toString(result));
 //    }
 //}
+//
+//import java.util.HashSet;
+//import java.util.Set;
+//import java.util.Scanner;
+//
+//public class Solution {
+//
+//    public int lengthOfLongestSubstring(String s) {
+//
+//        int res = 0;
+//
+//        for (int i = 0; i < s.length(); i++) {
+//
+//            Set<Character> charSet = new HashSet<>();
+//
+//            for (int j = i; j < s.length(); j++) {
+//
+//                if (charSet.contains(s.charAt(j))) {
+//                    break;
+//                }
+//
+//                charSet.add(s.charAt(j));
+//            }
+//
+//            res = Math.max(res, charSet.size());
+//        }
+//
+//        return res;
+//    }
+//
+//    public static void main(String[] args) {
+//
+//        Scanner sc = new Scanner(System.in);
+//        System.out.print("String kiriting: ");
+//        String s = sc.nextLine();
+//
+//        Solution solution = new Solution();
+//
+//        int result = solution.lengthOfLongestSubstring(s);
+//
+//        System.out.println("Eng uzun takrorlanmaydigan substring uzunligi: " + result);
+//    }
+//}
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Scanner;
+public class MedianOfTwoSortedArrays {
 
-public class Solution {
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
 
-    public int lengthOfLongestSubstring(String s) {
+        int[] merged = new int[m + n];
 
-        int res = 0;
+        int i = 0, j = 0, k = 0;
 
-        for (int i = 0; i < s.length(); i++) {
-
-            Set<Character> charSet = new HashSet<>();
-
-            for (int j = i; j < s.length(); j++) {
-
-                if (charSet.contains(s.charAt(j))) {
-                    break;
-                }
-
-                charSet.add(s.charAt(j));
+        // Merge (ikki arrayni birlashtirish)
+        while (i < m && j < n) {
+            if (nums1[i] < nums2[j]) {
+                merged[k++] = nums1[i++];
+            } else {
+                merged[k++] = nums2[j++];
             }
-
-            res = Math.max(res, charSet.size());
         }
 
-        return res;
+        while (i < m) {
+            merged[k++] = nums1[i++];
+        }
+
+        while (j < n) {
+            merged[k++] = nums2[j++];
+        }
+
+        int total = m + n;
+
+        if (total % 2 == 1) {
+            return merged[total / 2];
+        } else {
+            return (merged[total / 2 - 1] + merged[total / 2]) / 2.0;
+        }
     }
 
     public static void main(String[] args) {
+        int[] nums1 = {1, 3};
+        int[] nums2 = {2};
 
-        Scanner sc = new Scanner(System.in);
-        System.out.print("String kiriting: ");
-        String s = sc.nextLine();
-
-        Solution solution = new Solution();
-
-        int result = solution.lengthOfLongestSubstring(s);
-
-        System.out.println("Eng uzun takrorlanmaydigan substring uzunligi: " + result);
+        double result = findMedianSortedArrays(nums1, nums2);
+        System.out.println("Median: " + result);
     }
 }
