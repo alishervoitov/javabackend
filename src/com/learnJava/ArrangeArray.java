@@ -188,29 +188,82 @@
 //    }
 //}
 
-import java.util.*;
-public class GFG {
-    public static Integer findMin(List<Integer> list) {
-        if (list == null || list.isEmpty())
-            return Integer.MAX_VALUE;
-        List<Integer> sortedList = new ArrayList<>(list);
-        Collections.sort(sortedList);
-        return sortedList.get(0);
+//import java.util.*;
+//public class GFG {
+//    public static Integer findMin(List<Integer> list) {
+//        if (list == null || list.isEmpty())
+//            return Integer.MAX_VALUE;
+//        List<Integer> sortedList = new ArrayList<>(list);
+//        Collections.sort(sortedList);
+//        return sortedList.get(0);
+//    }
+//    public static Integer findMax(List<Integer> list) {
+//        if (list == null || list.isEmpty())
+//            return Integer.MIN_VALUE;
+//        List<Integer> sortedList = new ArrayList<>(list);
+//        Collections.sort(sortedList);
+//        return sortedList.get(sortedList.size() - 1);
+//    }
+//    public static void main(String[] args) {
+//        List<Integer> list = new ArrayList<>();
+//        list.add(44);
+//        list.add(11);
+//        list.add(22);
+//        list.add(33);
+//        System.out.println("Min: " + findMin(list));
+//        System.out.println("Max: " + findMax(list));
+//    }
+//}
+
+package com.learnJava;
+
+public class ArrangeArray {
+
+    private int [] array={2,5,7,8,1,6,9};
+    private int len=array.length;
+    public static void main(String [] args)
+    {
+        ArrangeArray a=new ArrangeArray();
+        a.print();
+        a.arrange();
+        a.print();
+
     }
-    public static Integer findMax(List<Integer> list) {
-        if (list == null || list.isEmpty())
-            return Integer.MIN_VALUE;
-        List<Integer> sortedList = new ArrayList<>(list);
-        Collections.sort(sortedList);
-        return sortedList.get(sortedList.size() - 1);
+    public  void print()
+    {
+        for(int i=0;i<array.length;i++)
+        {
+            System.out.print(array[i] + " ");
+
+        }
+        System.out.println();
     }
-    public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>();
-        list.add(44);
-        list.add(11);
-        list.add(22);
-        list.add(33);
-        System.out.println("Min: " + findMin(list));
-        System.out.println("Max: " + findMax(list));
+    public void arrange()
+    {
+        int oddinx=1;
+        int evenidx=0;
+        while(true)
+        {
+            while(evenidx<len && array[evenidx]%2==0)
+            {
+                evenidx+=2;
+            }
+            while(oddinx<len && array[oddinx]%2==1)
+            {
+                oddinx+=2;
+            }
+            if (evenidx < len && oddinx < len)
+                swap (evenidx, oddinx);
+            else
+                break;
+
+        }
+
+    }
+    public void swap(int a,int b)
+    {
+        int tmp=array[b];
+        array[b]=array[a];
+        array[a]=tmp;
     }
 }
