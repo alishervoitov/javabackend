@@ -1,4 +1,4 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 //public class Main {
 //    public static void main(String[] args) {
@@ -269,36 +269,60 @@
 //}
 
 
+//public class Solution {
+//
+//    int len = 0;
+//    String res = "";
+//
+//    public String longestPalindrome(String s) {
+//        for (int i = 0; i < s.length(); i++) {
+//            palindrome(s, i, i);
+//            palindrome(s, i, i + 1);
+//        }
+//        return res;
+//    }
+//
+//    void palindrome(String s, int l, int r) {
+//        while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
+//            l--;
+//            r++;
+//        }
+//
+//        int currentLen = r - l - 1;
+//
+//        if (currentLen > len) {
+//            res = s.substring(l + 1, r);
+//            len = currentLen;
+//        }
+//    }
+//
+//    public static void main(String[] args) {
+//        Solution sol = new Solution();
+//        String s = "babad";
+//        System.out.println(sol.longestPalindrome(s));
+//    }
+//}
+
+
 public class Solution {
-
-    int len = 0;
-    String res = "";
-
-    public String longestPalindrome(String s) {
-        for (int i = 0; i < s.length(); i++) {
-            palindrome(s, i, i);
-            palindrome(s, i, i + 1);
-        }
-        return res;
-    }
-
-    void palindrome(String s, int l, int r) {
-        while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
-            l--;
-            r++;
+    public boolean isPalindrome(int x) {
+        if (x < 0) {
+            return false;
         }
 
-        int currentLen = r - l - 1;
-
-        if (currentLen > len) {
-            res = s.substring(l + 1, r);
-            len = currentLen;
+        long div = 1;
+        while (x >= 10 * div) {
+            div *= 10;
         }
-    }
 
-    public static void main(String[] args) {
-        Solution sol = new Solution();
-        String s = "babad";
-        System.out.println(sol.longestPalindrome(s));
+        while (x != 0) {
+            if (x / div != x % 10) {
+                return false;
+            }
+            x = (int) (x % div) / 10;
+            div /= 100;
+        }
+
+        return true;
     }
 }
