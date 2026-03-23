@@ -327,33 +327,50 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //    }
 //}
 
-public class Solution {
-
-    public String intToRoman(int num) {
-        String[] sym = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
-        int[] val = {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};
-
-        StringBuilder res = new StringBuilder();
-        int idx = val.length - 1;
-
-        while (num > 0 && idx >= 0) {
-            if (num < val[idx]) {
-                idx--;
-            } else {
-                num -= val[idx];
-                res.append(sym[idx]);
-            }
-        }
-
-        return res.toString();
+//public class Solution {
+//
+//    public String intToRoman(int num) {
+//        String[] sym = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
+//        int[] val = {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};
+//
+//        StringBuilder res = new StringBuilder();
+//        int idx = val.length - 1;
+//
+//        while (num > 0 && idx >= 0) {
+//            if (num < val[idx]) {
+//                idx--;
+//            } else {
+//                num -= val[idx];
+//                res.append(sym[idx]);
+//            }
+//        }
+//
+//        return res.toString();
+//    }
+//
+//    public static void main(String[] args) {
+//        Solution sol = new Solution();
+//
+//        int num = 1994;
+//        String result = sol.intToRoman(num);
+//
+//        System.out.println("Roman: " + result);
+//    }
+import java.util.Scanner;
+public class LinearCalculation{
+    public static double findCarsDistance(double car1speed, double car2speed, double initialDistance, double time){
+        double totalSpeed = car1speed + car2speed;
+        double distanceCars = totalSpeed * time;
+        return initialDistance + distanceCars;
     }
-
-    public static void main(String[] args) {
-        Solution sol = new Solution();
-
-        int num = 1994;
-        String result = sol.intToRoman(num);
-
-        System.out.println("Roman: " + result);
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        double v1 = scanner.nextDouble();
+        double v2 = scanner.nextDouble();
+        double s = scanner.nextDouble();
+        double t = scanner.nextDouble();
+        double result = findCarsDistance(v1, v2, s, t);
+        System.out.println("Distance: " + result);
+        scanner.close();
     }
 }
