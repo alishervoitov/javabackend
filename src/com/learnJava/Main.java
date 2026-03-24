@@ -356,21 +356,40 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //
 //        System.out.println("Roman: " + result);
 //    }
-import java.util.Scanner;
-public class LinearCalculation{
-    public static double findCarsDistance(double car1speed, double car2speed, double initialDistance, double time){
-        double totalSpeed = car1speed + car2speed;
-        double distanceCars = totalSpeed * time;
-        return initialDistance + distanceCars;
-    }
-    public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
-        double v1 = scanner.nextDouble();
-        double v2 = scanner.nextDouble();
-        double s = scanner.nextDouble();
-        double t = scanner.nextDouble();
-        double result = findCarsDistance(v1, v2, s, t);
-        System.out.println("Distance: " + result);
-        scanner.close();
+//import java.util.Scanner;
+//public class LinearCalculation{
+//    public static double findCarsDistance(double car1speed, double car2speed, double initialDistance, double time){
+//        double totalSpeed = car1speed + car2speed;
+//        double distanceCars = totalSpeed * time;
+//        return initialDistance + distanceCars;
+//    }
+//    public static void main(String[] args){
+//        Scanner scanner = new Scanner(System.in);
+//        double v1 = scanner.nextDouble();
+//        double v2 = scanner.nextDouble();
+//        double s = scanner.nextDouble();
+//        double t = scanner.nextDouble();
+//        double result = findCarsDistance(v1, v2, s, t);
+//        System.out.println("Distance: " + result);
+//        scanner.close();
+//    }
+//}
+
+public class Main {
+    public static void main(String[] args) {
+        int a = 9;
+        int b = 4;
+        System.out.println("Addition = " + a + "+" + b + " = " + (a + b));
+        System.out.println("Subtraction = " + a + "-" + b + " = " + (a - b));
+        System.out.println("Multiplication = " + a + "*" + b  + " = " + (a * b));
+        System.out.println("Division = " + a + "/" + b + " = " + (a / b));
+        System.out.println("Remainder = " + a + "%" + b + " = " + (a % b) + "\n");
+
+        System.out.println("Unary minus = " + (-b));
+        System.out.print("Post-Increment a++ = " + (a++)); //we display 'a' and then a = a+1 (9+1=10);
+        System.out.println(" and Pre-Increment ++a = " + (++a)); //a=a+1 (10+1=11) and then display it
+
+        System.out.print("Post-Decrement b-- = " + (b--)); //we display 'b' and then b = b-1 (4-1=3);
+        System.out.println(" and Pre-Decrement --b = " + (--b)); //b=b-1 (3-1=2) and then display it
     }
 }
