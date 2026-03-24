@@ -375,21 +375,41 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //    }
 //}
 
-public class Main {
+//public class Main {
+//    public static void main(String[] args) {
+//        int a = 9;
+//        int b = 4;
+//        System.out.println("Addition = " + a + "+" + b + " = " + (a + b));
+//        System.out.println("Subtraction = " + a + "-" + b + " = " + (a - b));
+//        System.out.println("Multiplication = " + a + "*" + b  + " = " + (a * b));
+//        System.out.println("Division = " + a + "/" + b + " = " + (a / b));
+//        System.out.println("Remainder = " + a + "%" + b + " = " + (a % b) + "\n");
+//
+//        System.out.println("Unary minus = " + (-b));
+//        System.out.print("Post-Increment a++ = " + (a++)); //we display 'a' and then a = a+1 (9+1=10);
+//        System.out.println(" and Pre-Increment ++a = " + (++a)); //a=a+1 (10+1=11) and then display it
+//
+//        System.out.print("Post-Decrement b-- = " + (b--)); //we display 'b' and then b = b-1 (4-1=3);
+//        System.out.println(" and Pre-Decrement --b = " + (--b)); //b=b-1 (3-1=2) and then display it
+//    }
+//}
+
+public class Main{
     public static void main(String[] args) {
-        int a = 9;
-        int b = 4;
+        float a = 9.0f;
+        float b = 4;
         System.out.println("Addition = " + a + "+" + b + " = " + (a + b));
         System.out.println("Subtraction = " + a + "-" + b + " = " + (a - b));
-        System.out.println("Multiplication = " + a + "*" + b  + " = " + (a * b));
-        System.out.println("Division = " + a + "/" + b + " = " + (a / b));
+        System.out.println("Multiplication = " + a + "*" + b + " = " + (a * b));
+        System.out.print("Division = " + a + "/" + b + " = " + (a / b));
+        System.out.printf(" or %.4f \n", (a / b)); //show formatted result
         System.out.println("Remainder = " + a + "%" + b + " = " + (a % b) + "\n");
 
         System.out.println("Unary minus = " + (-b));
-        System.out.print("Post-Increment a++ = " + (a++)); //we display 'a' and then a = a+1 (9+1=10);
+        System.out.print("Post-Increment a++ = " + (a++)); // we display 'a' and then a = a+1 (9+1=10);
         System.out.println(" and Pre-Increment ++a = " + (++a)); //a=a+1 (10+1=11) and then display it
 
-        System.out.print("Post-Decrement b-- = " + (b--)); //we display 'b' and then b = b-1 (4-1=3);
+        System.out.print("Post-Decrement b-- = " + (b--)); // we display 'b' and then b = b-1 (4-1=3);
         System.out.println(" and Pre-Decrement --b = " + (--b)); //b=b-1 (3-1=2) and then display it
     }
 }
