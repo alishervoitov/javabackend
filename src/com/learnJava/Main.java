@@ -414,15 +414,24 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //    }
 //}
 
-public class Main {
+//public class Main {
+//    public static void main(String[] args) {
+//        int a = 9;
+//        float b = 7;
+//        System.out.println("Addition = " + a + "+" + b + " = " + (a + b));
+//        System.out.println("Subtraction = " + a + "-" + b + " = " + (a - b));
+//        System.out.println("Multiplication = " + a + "*" + b + " = " + (a * b));
+//        System.out.print("Division = " + a + "/" + b + " = " + (a / b));
+//        System.out.printf(" or %.4f \n", (a / b)); //show formatted result
+//        System.out.println("Remainder = " + a + "%" + b + " = " + (a % b)+"\n");
+//    }
+//}
+
+class Main {
     public static void main(String[] args) {
-        int a = 9;
-        float b = 7;
-        System.out.println("Addition = " + a + "+" + b + " = " + (a + b));
-        System.out.println("Subtraction = " + a + "-" + b + " = " + (a - b));
-        System.out.println("Multiplication = " + a + "*" + b + " = " + (a * b));
-        System.out.print("Division = " + a + "/" + b + " = " + (a / b));
-        System.out.printf(" or %.4f \n", (a / b)); //show formatted result
-        System.out.println("Remainder = " + a + "%" + b + " = " + (a % b)+"\n");
+        int firstNumber = 5000000;
+        short secondNumber = 100;
+        secondNumber = (short)firstNumber;
+        System.out.println(secondNumber);
     }
 }
