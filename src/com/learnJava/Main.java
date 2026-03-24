@@ -427,11 +427,47 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //    }
 //}
 
-class Main {
-    public static void main(String[] args) {
-        int firstNumber = 5000000;
-        short secondNumber = 100;
-        secondNumber = (short)firstNumber;
-        System.out.println(secondNumber);
+//class Main {
+//    public static void main(String[] args) {
+//        int firstNumber = 5000000;
+//        short secondNumber = 100;
+//        secondNumber = (short)firstNumber;
+//        System.out.println(secondNumber);
+//    }
+//}
+
+public class Main {
+    public static void main (String[] args){
+        int a = 9;
+        int b = 4;
+
+        if ( a < b ) {
+            System.out.println("This will never print because it is false." );
+        }
+        if ( a <= b ) {
+            System.out.println("This will never print because it is false." );
+        }
+        if ( a == 4 ) {
+            System.out.println("This will never print because it is false." );
+        }
+        if ( b == 4 ) {
+            System.out.println("The expression (b == 4) is true." );
+        }
+        if ( a != b ) {
+            System.out.println("The expression (a != b) is true." );
+        }
+        if ( a > b ) {
+            System.out.println("The expression (a > b) is true." );
+        }
+        if ( a >= b ) {
+            System.out.println("The expression (a >= b) is true." );
+        }
+        if ( (a != b) && (a > b) ) {
+            System.out.println("This will be printed because both conditions are true." );
+        }
+        if ( (a != b) || (a < b) || ( a == 4 ) ) {
+            System.out.println("This will be printed because one of the conditions is true." );
+        }
+
     }
 }
