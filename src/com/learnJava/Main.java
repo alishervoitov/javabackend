@@ -527,21 +527,35 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //}
 
 
-import java.util.Scanner;
+//import java.util.Scanner;
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        Scanner sc = new Scanner(System.in);
+//        int amount;
+//        int cost = 2;
+//        int count = 0;
+//        System.out.println("How much money does Mary have? ");
+//        amount = sc.nextInt();
+//        int sum = 0;
+//        while((amount-sum) >= cost) {
+//            count++;
+//            sum += cost;
+//        }
+//        System.out.println("Mary can buy " + count + " candy(es).");
+//    }
+//}
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int amount;
-        int cost = 2;
-        int count = 0;
-        System.out.println("How much money does Mary have? ");
-        amount = sc.nextInt();
-        int sum = 0;
-        while((amount-sum) >= cost) {
-            count++;
-            sum += cost;
+        int i;
+        int j;
+
+        for(i = 2; i<=3; i++) {  /*outer loop*/
+            System.out.println("Table of " + i);
+            for(j = 1; j<=10; j++) {  /*inner loop*/
+                System.out.println(i + " * " + j + " = " + (i*j));
+            }
         }
-        System.out.println("Mary can buy " + count + " candy(es).");
     }
 }
