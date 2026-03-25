@@ -546,16 +546,33 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //    }
 //}
 
+//public class Main {
+//    public static void main(String[] args) {
+//        int i;
+//        int j;
+//
+//        for(i = 2; i<=3; i++) {  /*outer loop*/
+//            System.out.println("Table of " + i);
+//            for(j = 1; j<=10; j++) {  /*inner loop*/
+//                System.out.println(i + " * " + j + " = " + (i*j));
+//            }
+//        }
+//    }
+//}
+
+import java.lang.Math;
+
 public class Main {
     public static void main(String[] args) {
-        int i;
-        int j;
+        int num = 2;
+        int power = 3;
+        int resAmount = raiseNumber(num, power);
+        System.out.println(resAmount);
+    }
 
-        for(i = 2; i<=3; i++) {  /*outer loop*/
-            System.out.println("Table of " + i);
-            for(j = 1; j<=10; j++) {  /*inner loop*/
-                System.out.println(i + " * " + j + " = " + (i*j));
-            }
-        }
+    public static int raiseNumber(int num, int power) {
+        int resAmount = 0; // declaring local variable
+        resAmount = (int) Math.pow(num, power);// we can use library function
+        return resAmount; // returning the powered value
     }
 }
