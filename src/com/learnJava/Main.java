@@ -472,14 +472,27 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //    }
 //}
 
+//public class Main {
+//    public static void main(String[] args) {
+//        int a = 3;
+//        int b = 5;
+//        if (a == b) {
+//            System.out.println("a and b are equal");
+//        } else {
+//            System.out.println("a and b are not equal");
+//        }
+//    }
+//}
+
 public class Main {
     public static void main(String[] args) {
-        int a = 3;
-        int b = 5;
-        if (a == b) {
-            System.out.println("a and b are equal");
-        } else {
-            System.out.println("a and b are not equal");
+        int money = 10;
+        if(money == 5) {
+            System.out.println("You can buy a candy.");
+        } else if(money == 10) {
+            System.out.println("You can buy 2 candies or one bar of chocolate.");
+        } else if(money == 15) {
+            System.out.println("You can buy a cake, or one candy and one bar of chocolate, or three candies.");
         }
     }
 }
