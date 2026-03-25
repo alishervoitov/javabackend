@@ -484,15 +484,44 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //    }
 //}
 
+//public class Main {
+//    public static void main(String[] args) {
+//        int money = 10;
+//        if(money == 5) {
+//            System.out.println("You can buy a candy.");
+//        } else if(money == 10) {
+//            System.out.println("You can buy 2 candies or one bar of chocolate.");
+//        } else if(money == 15) {
+//            System.out.println("You can buy a cake, or one candy and one bar of chocolate, or three candies.");
+//        }
+//    }
+//}
+
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        int money = 10;
-        if(money == 5) {
-            System.out.println("You can buy a candy.");
-        } else if(money == 10) {
-            System.out.println("You can buy 2 candies or one bar of chocolate.");
-        } else if(money == 15) {
-            System.out.println("You can buy a cake, or one candy and one bar of chocolate, or three candies.");
+        String choice;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("What do you prefer?");
+        System.out.println("1 a candy");
+        System.out.println("2 chocolate");
+        System.out.println("3 a cake ");
+        System.out.println("Enter your choice:");
+        choice = sc.nextLine();
+        switch(choice) {
+            case "1":
+                System.out.println("You need 5 dollars.");
+                break;
+            case "2":
+                System.out.println("You need 10 dollars.");
+                break;
+            case "3":
+                System.out.println("You need 15 dollars.");
+                break;
+            default:
+                System.out.println("Invalid choice");
+                break;
         }
     }
 }
