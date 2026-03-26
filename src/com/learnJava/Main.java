@@ -577,15 +577,27 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //    }
 //}
 
-public class Main {
-    public double raiseNumber(double num, double power) {
-        return Math.pow(num,power);
-    }
+//public class Main {
+//    public double raiseNumber(double num, double power) {
+//        return Math.pow(num,power);
+//    }
+//
+//    public static void main(String[] args) {
+//        Main obj = new Main(); // creating object for calling the method
+//        double result = obj.raiseNumber(5,3); //first invoking the method
+//        System.out.println("Result of (5^3): " + result);
+//        System.out.println("Result of (10^4): " + obj.raiseNumber(10,4)); //second invoking
+//    }
+//}
 
+public class Main {
     public static void main(String[] args) {
-        Main obj = new Main(); // creating object for calling the method
-        double result = obj.raiseNumber(5,3); //first invoking the method
-        System.out.println("Result of (5^3): " + result);
-        System.out.println("Result of (10^4): " + obj.raiseNumber(10,4)); //second invoking
+        String str1 = "The weather is fine.";
+        char[] arrStr = {'s', 'u', 'n', 'n', 'y'};
+        String str2 = new String(arrStr);
+        System.out.println("Old string: " + str1);
+        String str1_changed = str1.replace("fine", str2.toUpperCase());
+        System.out.println("Changed string will be: " + str1_changed);
+        System.out.println("The length of the new string is " + str1_changed.length());
     }
 }
