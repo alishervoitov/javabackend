@@ -560,19 +560,32 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //    }
 //}
 
-import java.lang.Math;
+//import java.lang.Math;
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        int num = 2;
+//        int power = 3;
+//        int resAmount = raiseNumber(num, power);
+//        System.out.println(resAmount);
+//    }
+//
+//    public static int raiseNumber(int num, int power) {
+//        int resAmount = 0; // declaring local variable
+//        resAmount = (int) Math.pow(num, power);// we can use library function
+//        return resAmount; // returning the powered value
+//    }
+//}
 
 public class Main {
-    public static void main(String[] args) {
-        int num = 2;
-        int power = 3;
-        int resAmount = raiseNumber(num, power);
-        System.out.println(resAmount);
+    public double raiseNumber(double num, double power) {
+        return Math.pow(num,power);
     }
 
-    public static int raiseNumber(int num, int power) {
-        int resAmount = 0; // declaring local variable
-        resAmount = (int) Math.pow(num, power);// we can use library function
-        return resAmount; // returning the powered value
+    public static void main(String[] args) {
+        Main obj = new Main(); // creating object for calling the method
+        double result = obj.raiseNumber(5,3); //first invoking the method
+        System.out.println("Result of (5^3): " + result);
+        System.out.println("Result of (10^4): " + obj.raiseNumber(10,4)); //second invoking
     }
 }
