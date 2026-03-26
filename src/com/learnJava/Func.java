@@ -590,14 +590,42 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //    }
 //}
 
-public class Main {
+//public class Main {
+//    public static void main(String[] args) {
+//        String str1 = "The weather is fine.";
+//        char[] arrStr = {'s', 'u', 'n', 'n', 'y'};
+//        String str2 = new String(arrStr);
+//        System.out.println("Old string: " + str1);
+//        String str1_changed = str1.replace("fine", str2.toUpperCase());
+//        System.out.println("Changed string will be: " + str1_changed);
+//        System.out.println("The length of the new string is " + str1_changed.length());
+//    }
+//}
+
+//public class Func {
+//    public static void main(String[] args) {
+//
+//    }
+//
+//    public static void method1() {
+//        System.out.print("Hello, ");
+//        method2();
+//    }
+//
+//    public static void method2() {
+//        System.out.print("world.");
+//    }
+//}
+
+public class Func {
     public static void main(String[] args) {
-        String str1 = "The weather is fine.";
-        char[] arrStr = {'s', 'u', 'n', 'n', 'y'};
-        String str2 = new String(arrStr);
-        System.out.println("Old string: " + str1);
-        String str1_changed = str1.replace("fine", str2.toUpperCase());
-        System.out.println("Changed string will be: " + str1_changed);
-        System.out.println("The length of the new string is " + str1_changed.length());
+        int x;
+        x = method(3);
+        System.out.println(x);
+    }
+
+    public static int method(int x) {
+        if (x <= 0) return x;
+        else return x = x * method(x-1);
     }
 }
