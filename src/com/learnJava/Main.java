@@ -666,12 +666,27 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //
 //}
 
+//public class Main {
+//    public static void main(String[] args) {
+//        System.out.println(method(10, 90));
+//    }
+//
+//    public static double method(int x, int y) {
+//        return Math.sqrt(x + y);
+//    }
+//}
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println(method(10, 90));
+        int x;
+        x = method(3);
+        System.out.println(x);
     }
 
-    public static double method(int x, int y) {
-        return Math.sqrt(x + y);
+    public static int method(int x) {
+        if (x <= 0)
+            return x;
+        else
+            return x = x + method(x - 1);
     }
 }
