@@ -650,18 +650,28 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //    }
 //}
 
+//public class Main {
+//    public static void main(String[] args) {
+//        method2();
+//    }
+//
+//    public static void method1() {
+//        System.out.print("Hello, ");
+//        method2();
+//    }
+//
+//    public static void method2() {
+//        System.out.print("world.");
+//    }
+//
+//}
+
 public class Main {
     public static void main(String[] args) {
-        method2();
+        System.out.println(method(10, 90));
     }
 
-    public static void method1() {
-        System.out.print("Hello, ");
-        method2();
+    public static double method(int x, int y) {
+        return Math.sqrt(x + y);
     }
-
-    public static void method2() {
-        System.out.print("world.");
-    }
-
 }
