@@ -720,29 +720,55 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //    }
 //}
 
+//import java.util.Scanner;
+//public class Main {
+//    public static int sumofFibonachi(int n) {
+//        int a = 0, b = 1;
+//        int sum = 0;
+//
+//        for(int i = 1; i <= n; i++) {
+//            sum += a;
+//            int next = a + b;
+//            a = b;
+//            b = next;
+//        }
+//        return sum;
+//    }
+//    public static void main(String[] args) {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.print("N ni kiriting: ");
+//        int n = sc.nextInt();
+//        int result = sumofFibonachi(n);
+//        System.out.println(result);
+//        sc.close();
+//    }
+//}
+
 import java.util.Scanner;
 public class Main {
-    public static int sumofFibonachi(int n) {
-        int a = 0, b = 1;
+    static int summodddigits(int n) {
         int sum = 0;
+        while(n>0) {
+            int digit = n % 10;
 
-        for(int i = 1; i <= n; i++) {
-            sum += a;
-            int next = a + b;
-            a = b;
-            b = next;
+            if (digit % 2 != 0) {
+                sum += digit;
+            }
+            n /= 10;
         }
         return sum;
     }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("N ni kiriting: ");
         int n = sc.nextInt();
-        int result = sumofFibonachi(n);
+        int result = summodddigits(n);
         System.out.println(result);
         sc.close();
     }
 }
+
 
 
 
