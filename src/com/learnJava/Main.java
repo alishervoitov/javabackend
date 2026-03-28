@@ -676,17 +676,46 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //    }
 //}
 
-public class Main {
-    public static void main(String[] args) {
-        int x;
-        x = method(3);
-        System.out.println(x);
-    }
+//public class Main {
+//    public static void main(String[] args) {
+//        int x;
+//        x = method(3);
+//        System.out.println(x);
+//    }
+//
+//    public static int method(int x) {
+//        if (x <= 0)
+//            return x;
+//        else
+//            return x = x + method(x - 1);
+//    }
+//}
 
-    public static int method(int x) {
-        if (x <= 0)
-            return x;
-        else
-            return x = x + method(x - 1);
+import java.util.Scanner;
+public class Main {
+    public static int square(int x) {
+        return x * x;
+    }
+    public static int modulus(int x) {
+        return Math.abs(x);
+    }
+    public static int calculate(int x) {
+        if (x>0) {
+            return square(x);
+        }
+        else if (x==0) {
+            return 0;
+        }
+        else {
+            return modulus(x);
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("X ni kiriting: ");
+        int x = sc.nextInt();
+        int result = calculate(x);
+        System.out.println(result);
+        sc.close();
     }
 }
