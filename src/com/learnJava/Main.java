@@ -770,19 +770,49 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //}
 
 
+//public class Main {
+//    public static void main(String[] args) {
+//        int hulkMovie;
+//        int ironManMovie;
+//        int spiderManMovie;
+//
+//        hulkMovie = 12;
+//        ironManMovie = 9;
+//        spiderManMovie = 10;
+//
+//        System.out.print(hulkMovie + " movies with Hulk.\n");
+//        System.out.print(ironManMovie + " movies with Iron Man.\n" );
+//        System.out.print(spiderManMovie + " movies with Spider Man.\n");
+//    }
+//}
+
+
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        int hulkMovie;
-        int ironManMovie;
-        int spiderManMovie;
+        int[] filmography = new int[10];
+        filmography[0] = 12;
+        filmography[1] = 9;
+        Scanner scanner = new Scanner(System.in);
 
-        hulkMovie = 12;
-        ironManMovie = 9;
-        spiderManMovie = 10;
+        for(int i = 2; i < filmography.length; i++) {
+            System.out.print("The number of movies with superhero num." + (i+1) + " is ");
+            filmography[i] = scanner.nextInt();
+        }
+        int totalMovies = 0;
+        for(int num : filmography) {
+            totalMovies += num;
+        }
 
-        System.out.print(hulkMovie + " movies with Hulk.\n");
-        System.out.print(ironManMovie + " movies with Iron Man.\n" );
-        System.out.print(spiderManMovie + " movies with Spider Man.\n");
+        System.out.println("The total number of movies with all superheroes " + totalMovies);
+
+        int min = filmography[0];
+        for (int i = 1; i < filmography.length; i++) {
+            if (filmography[i] < min)
+                min = filmography[i];
+        }
+        System.out.println("The smallest filmography consists of " + min +" movie(s).");
     }
 }
 
