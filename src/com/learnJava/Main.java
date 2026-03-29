@@ -744,28 +744,45 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //    }
 //}
 
-import java.util.Scanner;
+//import java.util.Scanner;
+//public class Main {
+//    static int summodddigits(int n) {
+//        int sum = 0;
+//        while(n>0) {
+//            int digit = n % 10;
+//
+//            if (digit % 2 != 0) {
+//                sum += digit;
+//            }
+//            n /= 10;
+//        }
+//        return sum;
+//    }
+//
+//    public static void main(String[] args) {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.print("N ni kiriting: ");
+//        int n = sc.nextInt();
+//        int result = summodddigits(n);
+//        System.out.println(result);
+//        sc.close();
+//    }
+//}
+
+
 public class Main {
-    static int summodddigits(int n) {
-        int sum = 0;
-        while(n>0) {
-            int digit = n % 10;
-
-            if (digit % 2 != 0) {
-                sum += digit;
-            }
-            n /= 10;
-        }
-        return sum;
-    }
-
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("N ni kiriting: ");
-        int n = sc.nextInt();
-        int result = summodddigits(n);
-        System.out.println(result);
-        sc.close();
+        int hulkMovie;
+        int ironManMovie;
+        int spiderManMovie;
+
+        hulkMovie = 12;
+        ironManMovie = 9;
+        spiderManMovie = 10;
+
+        System.out.print(hulkMovie + " movies with Hulk.\n");
+        System.out.print(ironManMovie + " movies with Iron Man.\n" );
+        System.out.print(spiderManMovie + " movies with Spider Man.\n");
     }
 }
 
