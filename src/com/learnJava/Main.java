@@ -787,36 +787,87 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 //}
 
 
+//import java.util.Scanner;
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        int[] filmography = new int[10];
+//        filmography[0] = 12;
+//        filmography[1] = 9;
+//        Scanner scanner = new Scanner(System.in);
+//
+//        for(int i = 2; i < filmography.length; i++) {
+//            System.out.print("The number of movies with superhero num." + (i+1) + " is ");
+//            filmography[i] = scanner.nextInt();
+//        }
+//        int totalMovies = 0;
+//        for(int num : filmography) {
+//            totalMovies += num;
+//        }
+//
+//        System.out.println("The total number of movies with all superheroes " + totalMovies);
+//
+//        int min = filmography[0];
+//        for (int i = 1; i < filmography.length; i++) {
+//            if (filmography[i] < min)
+//                min = filmography[i];
+//        }
+//        System.out.println("The smallest filmography consists of " + min +" movie(s).");
+//    }
+//}
+
+
+
 import java.util.Scanner;
 
+class Node {
+    int dataElement;
+    Node next;
+};
 public class Main {
     public static void main(String[] args) {
-        int[] filmography = new int[10];
-        filmography[0] = 12;
-        filmography[1] = 9;
+        System.out.println("Children's game");
+
+        Node list;
+        Node first = new Node(); /* Dynamic memory allocation */
+        Node second = new Node();
+        Node third = new Node();
+        Node fourth = new Node();
+
         Scanner scanner = new Scanner(System.in);
+        System.out.print("The leader thinks ");
+        int numberFirst = scanner.nextInt();
 
-        for(int i = 2; i < filmography.length; i++) {
-            System.out.print("The number of movies with superhero num." + (i+1) + " is ");
-            filmography[i] = scanner.nextInt();
-        }
-        int totalMovies = 0;
-        for(int num : filmography) {
-            totalMovies += num;
-        }
+        first.dataElement = numberFirst; // Assigning data to the first node
+        first.next = second; // Linking the first node with the second node
 
-        System.out.println("The total number of movies with all superheroes " + totalMovies);
+        int numberNext = numberFirst + 5;
+        second.dataElement = numberNext; // Assigning data to the second node
+        second.next = third; // Linking the second node with the third node
 
-        int min = filmography[0];
-        for (int i = 1; i < filmography.length; i++) {
-            if (filmography[i] < min)
-                min = filmography[i];
+        numberNext += 4;
+        third.dataElement = numberNext; // Assigning data to the third node
+        third.next = fourth; // Linking the third node with the fourth node
+
+        numberNext -= 9;
+        fourth.dataElement = numberNext; // Assigning data to the fourth node
+        list = first; // Assigning a reference to a list
+
+        displayList(list);
+        if (numberFirst == numberNext) {
+            System.out.println("Children win!");
+        } else {
+            System.out.println("The leader wins");
         }
-        System.out.println("The smallest filmography consists of " + min +" movie(s).");
+    }
+
+    public static void displayList(Node element) { // Method to display the linked list
+        while (element.next != null) {
+            System.out.printf("%d\n", element.dataElement);
+            element = element.next;
+        }
     }
 }
-
-
 
 
 
