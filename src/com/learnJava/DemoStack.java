@@ -819,56 +819,124 @@ package com.learnJava;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/>
 
 
 import java.util.Scanner;
+//
+//class Node {
+//    int dataElement;
+//    Node next;
+//};
+//public class Main {
+//    public static void main(String[] args) {
+//        System.out.println("Children's game");
+//
+//        Node list;
+//        Node first = new Node(); /* Dynamic memory allocation */
+//        Node second = new Node();
+//        Node third = new Node();
+//        Node fourth = new Node();
+//
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.print("The leader thinks ");
+//        int numberFirst = scanner.nextInt();
+//
+//        first.dataElement = numberFirst; // Assigning data to the first node
+//        first.next = second; // Linking the first node with the second node
+//
+//        int numberNext = numberFirst + 5;
+//        second.dataElement = numberNext; // Assigning data to the second node
+//        second.next = third; // Linking the second node with the third node
+//
+//        numberNext += 4;
+//        third.dataElement = numberNext; // Assigning data to the third node
+//        third.next = fourth; // Linking the third node with the fourth node
+//
+//        numberNext -= 9;
+//        fourth.dataElement = numberNext; // Assigning data to the fourth node
+//        list = first; // Assigning a reference to a list
+//
+//        displayList(list);
+//        if (numberFirst == numberNext) {
+//            System.out.println("Children win!");
+//        } else {
+//            System.out.println("The leader wins");
+//        }
+//    }
+//
+//    public static void displayList(Node element) { // Method to display the linked list
+//        while (element.next != null) {
+//            System.out.printf("%d\n", element.dataElement);
+//            element = element.next;
+//        }
+//    }
+//}
 
-class Node {
-    int dataElement;
-    Node next;
-};
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Children's game");
 
-        Node list;
-        Node first = new Node(); /* Dynamic memory allocation */
-        Node second = new Node();
-        Node third = new Node();
-        Node fourth = new Node();
+import java.util.Scanner;
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("The leader thinks ");
-        int numberFirst = scanner.nextInt();
+class Stack {
+    private int[] elem;
+    private int top;
 
-        first.dataElement = numberFirst; // Assigning data to the first node
-        first.next = second; // Linking the first node with the second node
+    public Stack() {
+        elem = new int[10];
+        top = -1;
+    }
 
-        int numberNext = numberFirst + 5;
-        second.dataElement = numberNext; // Assigning data to the second node
-        second.next = third; // Linking the second node with the third node
-
-        numberNext += 4;
-        third.dataElement = numberNext; // Assigning data to the third node
-        third.next = fourth; // Linking the third node with the fourth node
-
-        numberNext -= 9;
-        fourth.dataElement = numberNext; // Assigning data to the fourth node
-        list = first; // Assigning a reference to a list
-
-        displayList(list);
-        if (numberFirst == numberNext) {
-            System.out.println("Children win!");
+    public void push(int value) {
+        if (top < (elem.length -1)) {
+            top++;
+            elem[top] = value;
         } else {
-            System.out.println("The leader wins");
+            System.out.printf("The stack is full, the number of elements is: %d !\n", elem.length);
         }
     }
 
-    public static void displayList(Node element) { // Method to display the linked list
-        while (element.next != null) {
-            System.out.printf("%d\n", element.dataElement);
-            element = element.next;
+    public int pop() {
+        if (top >= 0 ) {
+            int data = elem[top];
+            elem[top] = 0;
+            top--;
+            return data;
+        } else {
+            System.out.printf("The stack is empty.\n");
+            return 0;
+        }
+    }
+
+    public boolean isEmpty() {
+        return top < 0 ? true : false;
+    }
+
+    int getCount() {
+        return top + 1;
+    }
+
+    public void displayStack() {
+        for (int i = top; i >= 0; i--) {
+            System.out.println(elem[i]);
         }
     }
 }
 
 
+public class DemoStack {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
+        Stack stack = new Stack();
+        System.out.print("Enter the number of items in the stack: ");
+        int number = scanner.nextInt();
+        for (int i = 0; i < number; i++) {
+            System.out.printf("Enter an element %d: ", i);
+            stack.push(scanner.nextInt());
+        }
+
+        System.out.println("Size of the stack is " + stack.getCount());
+        stack.displayStack();
+
+        while ( !stack.isEmpty() ) {
+            System.out.println("Pop an element " + stack.pop());
+            System.out.println(stack.getCount() + " items left on the stack");
+        }
+    }
+}
 
