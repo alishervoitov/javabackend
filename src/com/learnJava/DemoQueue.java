@@ -870,73 +870,145 @@ import java.util.Scanner;
 //}
 
 
+//import java.util.Scanner;
+
+//class Stack {
+//    private int[] elem;
+//    private int top;
+//
+//    public Stack() {
+//        elem = new int[10];
+//        top = -1;
+//    }
+//
+//    public void push(int value) {
+//        if (top < (elem.length -1)) {
+//            top++;
+//            elem[top] = value;
+//        } else {
+//            System.out.printf("The stack is full, the number of elements is: %d !\n", elem.length);
+//        }
+//    }
+//
+//    public int pop() {
+//        if (top >= 0 ) {
+//            int data = elem[top];
+//            elem[top] = 0;
+//            top--;
+//            return data;
+//        } else {
+//            System.out.printf("The stack is empty.\n");
+//            return 0;
+//        }
+//    }
+//
+//    public boolean isEmpty() {
+//        return top < 0 ? true : false;
+//    }
+//
+//    int getCount() {
+//        return top + 1;
+//    }
+//
+//    public void displayStack() {
+//        for (int i = top; i >= 0; i--) {
+//            System.out.println(elem[i]);
+//        }
+//    }
+//}
+//
+//
+//public class DemoStack {
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//
+//        Stack stack = new Stack();
+//        System.out.print("Enter the number of items in the stack: ");
+//        int number = scanner.nextInt();
+//        for (int i = 0; i < number; i++) {
+//            System.out.printf("Enter an element %d: ", i);
+//            stack.push(scanner.nextInt());
+//        }
+//
+//        System.out.println("Size of the stack is " + stack.getCount());
+//        stack.displayStack();
+//
+//        while ( !stack.isEmpty() ) {
+//            System.out.println("Pop an element " + stack.pop());
+//            System.out.println(stack.getCount() + " items left on the stack");
+//        }
+//    }
+//}
+
 import java.util.Scanner;
 
-class Stack {
-    private int[] elem;
-    private int top;
+class Queue {
+    private int[] queItems;
+    private int last;
 
-    public Stack() {
-        elem = new int[10];
-        top = -1;
+    public Queue() { //initialization of the queue
+        queItems = new int[15];
+        last = -1;
     }
 
-    public void push(int value) {
-        if (top < (elem.length -1)) {
-            top++;
-            elem[top] = value;
+    public void pushBack(int value) { //placing value at the end of the queue
+        if(last < queItems.length - 1) {
+            last++;
+            queItems[last] = value;
         } else {
-            System.out.printf("The stack is full, the number of elements is: %d !\n", elem.length);
+            System.out.println("The queue is full!");
         }
     }
 
-    public int pop() {
-        if (top >= 0 ) {
-            int data = elem[top];
-            elem[top] = 0;
-            top--;
-            return data;
-        } else {
-            System.out.printf("The stack is empty.\n");
+    public int popFront() { //remove element from queue
+        if( isEmpty() ) {
+            System.out.println("The queue is empty!");
             return 0;
+        } else {
+            int first = queItems[0];
+            for (int i = 0; i < last; i++) {
+                queItems[i] = queItems[i+1];
+            }
+            queItems[last] = 0;
+            last--;
+            return first;
         }
     }
 
     public boolean isEmpty() {
-        return top < 0 ? true : false;
+        return last < 0 ? true : false;
     }
 
-    int getCount() {
-        return top + 1;
-    }
-
-    public void displayStack() {
-        for (int i = top; i >= 0; i--) {
-            System.out.println(elem[i]);
+    public void displayQueue() {
+        if( isEmpty() ) {
+            System.out.println("The queue is empty!");
+            return;
         }
+        for (int i = 0; i <= last; i++) {
+            System.out.print(queItems[i] + " ");
+        }
+        System.out.println();
     }
 }
 
-
-public class DemoStack {
+public class DemoQueue {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        Stack stack = new Stack();
-        System.out.print("Enter the number of items in the stack: ");
-        int number = scanner.nextInt();
-        for (int i = 0; i < number; i++) {
-            System.out.printf("Enter an element %d: ", i);
-            stack.push(scanner.nextInt());
+        Queue queue = new Queue();
+        queue.displayQueue();
+
+        for (int i = 0; i < 8; i++) {
+            System.out.print("Enter an element: ");
+            queue.pushBack(scanner.nextInt());
         }
+        System.out.println();
+        queue.displayQueue();
 
-        System.out.println("Size of the stack is " + stack.getCount());
-        stack.displayStack();
-
-        while ( !stack.isEmpty() ) {
-            System.out.println("Pop an element " + stack.pop());
-            System.out.println(stack.getCount() + " items left on the stack");
+        while ( !queue.isEmpty() ) {
+            int value = queue.popFront();
+            System.out.printf("The element %d was removed.\n", value);
+            queue.displayQueue();
         }
     }
 }
-
