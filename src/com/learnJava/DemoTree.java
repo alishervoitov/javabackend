@@ -940,75 +940,153 @@ import java.util.Scanner;
 //    }
 //}
 
-import java.util.Scanner;
+//import java.util.Scanner;
+//
+//class Queue {
+//    private int[] queItems;
+//    private int last;
+//
+//    public Queue() { //initialization of the queue
+//        queItems = new int[15];
+//        last = -1;
+//    }
+//
+//    public void pushBack(int value) { //placing value at the end of the queue
+//        if(last < queItems.length - 1) {
+//            last++;
+//            queItems[last] = value;
+//        } else {
+//            System.out.println("The queue is full!");
+//        }
+//    }
+//
+//    public int popFront() { //remove element from queue
+//        if( isEmpty() ) {
+//            System.out.println("The queue is empty!");
+//            return 0;
+//        } else {
+//            int first = queItems[0];
+//            for (int i = 0; i < last; i++) {
+//                queItems[i] = queItems[i+1];
+//            }
+//            queItems[last] = 0;
+//            last--;
+//            return first;
+//        }
+//    }
+//
+//    public boolean isEmpty() {
+//        return last < 0 ? true : false;
+//    }
+//
+//    public void displayQueue() {
+//        if( isEmpty() ) {
+//            System.out.println("The queue is empty!");
+//            return;
+//        }
+//        for (int i = 0; i <= last; i++) {
+//            System.out.print(queItems[i] + " ");
+//        }
+//        System.out.println();
+//    }
+//}
+//
+//public class DemoQueue {
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//
+//        Queue queue = new Queue();
+//        queue.displayQueue();
+//
+//        for (int i = 0; i < 8; i++) {
+//            System.out.print("Enter an element: ");
+//            queue.pushBack(scanner.nextInt());
+//        }
+//        System.out.println();
+//        queue.displayQueue();
+//
+//        while ( !queue.isEmpty() ) {
+//            int value = queue.popFront();
+//            System.out.printf("The element %d was removed.\n", value);
+//            queue.displayQueue();
+//        }
+//    }
+//}
 
-class Queue {
-    private int[] queItems;
-    private int last;
 
-    public Queue() { //initialization of the queue
-        queItems = new int[15];
-        last = -1;
-    }
+//public class TreeNode {
+//    int data; // node value
+//    TreeNode left; // left child
+//    TreeNode right; // right child
+//
+//}
+//void visitNode(TreeNode node) {             // tree traversal in prefix form
+//    if (node != null) {                     // Until An Empty Node Is Found
+//        System.out.print(node.data + " ");  // Display the root of the tree
+//        visitNode(node.left);               // Recursive function for the left subtree
+//        visitNode(node.right);              // Recursive function for the right subtree
+//    }
+//}
 
-    public void pushBack(int value) { //placing value at the end of the queue
-        if(last < queItems.length - 1) {
-            last++;
-            queItems[last] = value;
-        } else {
-            System.out.println("The queue is full!");
+class Tree {
+    private TreeNode root;
+
+    private class TreeNode {
+        int data;
+        TreeNode left;
+        TreeNode right;
+
+        public TreeNode(int data) {
+            this.data = data;
         }
     }
 
-    public int popFront() { //remove element from queue
-        if( isEmpty() ) {
-            System.out.println("The queue is empty!");
-            return 0;
-        } else {
-            int first = queItems[0];
-            for (int i = 0; i < last; i++) {
-                queItems[i] = queItems[i+1];
-            }
-            queItems[last] = 0;
-            last--;
-            return first;
+    public void showTree() {
+        visitNode(root);
+        System.out.println();
+    }
+    private void visitNode(TreeNode node) { // Display the tree in infix form
+        if(node != null) {
+            visitNode(node.left);
+            System.out.print(node.data + " ");
+            visitNode(node.right);
         }
     }
 
-    public boolean isEmpty() {
-        return last < 0 ? true : false;
-    }
-
-    public void displayQueue() {
-        if( isEmpty() ) {
-            System.out.println("The queue is empty!");
+    public void addData(int value) {
+        TreeNode newNode = new TreeNode(value);
+        if(root == null) {
+            root = newNode;
             return;
+        } else {
+            addNode(root, newNode);
         }
-        for (int i = 0; i <= last; i++) {
-            System.out.print(queItems[i] + " ");
+    }
+    private TreeNode addNode(TreeNode current, TreeNode newNode) {
+        if (current == null) {
+            return newNode;
+        } else if(newNode.data < current.data) {
+            current.left = addNode(current.left, newNode);
+        } else if (newNode.data > current.data) {
+            current.right = addNode(current.right, newNode);
         }
-        System.out.println();
+        return current;
     }
 }
 
-public class DemoQueue {
+public class DemoTree {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Tree tree = new Tree();
 
-        Queue queue = new Queue();
-        queue.displayQueue();
+        tree.addData(8);
+        tree.addData(6);
+        tree.addData(2);
+        tree.addData(1);
+        tree.addData(3);
+        tree.addData(7);
+        tree.addData(11);
 
-        for (int i = 0; i < 8; i++) {
-            System.out.print("Enter an element: ");
-            queue.pushBack(scanner.nextInt());
-        }
-        System.out.println();
-        queue.displayQueue();
-
-        while ( !queue.isEmpty() ) {
-            int value = queue.popFront();
-            System.out.printf("The element %d was removed.\n", value);
-            queue.displayQueue();
-        }
+        tree.showTree();
     }
 }
+
