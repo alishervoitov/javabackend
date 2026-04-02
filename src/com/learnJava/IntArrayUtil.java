@@ -1091,6 +1091,7 @@ import java.util.Scanner;
 //}
 
 
+import java.util.Scanner;
 import java.util.Arrays;
 
 public class IntArrayUtil {
@@ -1111,12 +1112,24 @@ public class IntArrayUtil {
     }
 
     public static void main(String[] args) {
-        int[] arr = {2, 3, 4, 5, 6};
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Array uzunligini kiriting: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        System.out.println("Elementlarni kiriting:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
 
         System.out.println("Before: " + Arrays.toString(arr));
 
         swapEven(arr);
 
         System.out.println("After:  " + Arrays.toString(arr));
+
+        sc.close();
     }
 }
