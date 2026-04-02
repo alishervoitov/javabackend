@@ -1091,16 +1091,61 @@ import java.util.Scanner;
 //}
 
 
-import java.util.Scanner;
+//import java.util.Scanner;
+//import java.util.Arrays;
+//
+//public class IntArrayUtil {
+//
+//    public static void swapEven(int[] array) {
+//        int left = 0;
+//        int right = array.length - 1;
+//
+//        while (left < right) {
+//            if (array[left] % 2 == 0 && array[right] % 2 == 0) {
+//                int temp = array[left];
+//                array[left] = array[right];
+//                array[right] = temp;
+//            }
+//            left++;
+//            right--;
+//        }
+//    }
+//
+//    public static void main(String[] args) {
+//        Scanner sc = new Scanner(System.in);
+//
+//        System.out.print("Array uzunligini kiriting: ");
+//        int n = sc.nextInt();
+//
+//        int[] arr = new int[n];
+//
+//        System.out.println("Elementlarni kiriting:");
+//        for (int i = 0; i < n; i++) {
+//            arr[i] = sc.nextInt();
+//        }
+//
+//        System.out.println("Before: " + Arrays.toString(arr));
+//
+//        swapEven(arr);
+//
+//        System.out.println("After:  " + Arrays.toString(arr));
+//
+//        sc.close();
+//    }
+//}
+
 import java.util.Arrays;
 
 public class IntArrayUtil {
 
     public static void swapEven(int[] array) {
+        if (array == null || array.length == 0) return;
+
         int left = 0;
         int right = array.length - 1;
 
         while (left < right) {
+            // check if both are even
             if (array[left] % 2 == 0 && array[right] % 2 == 0) {
                 int temp = array[left];
                 array[left] = array[right];
@@ -1112,24 +1157,35 @@ public class IntArrayUtil {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Array uzunligini kiriting: ");
-        int n = sc.nextInt();
-
-        int[] arr = new int[n];
-
-        System.out.println("Elementlarni kiriting:");
-        for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
+        {
+            int[] array = null;
+            swapEven(array);
+            System.out.println(Arrays.toString(array));
         }
-
-        System.out.println("Before: " + Arrays.toString(arr));
-
-        swapEven(arr);
-
-        System.out.println("After:  " + Arrays.toString(arr));
-
-        sc.close();
+        {
+            int[] array = new int[] {};
+            swapEven(array);
+            System.out.println(Arrays.toString(array));
+        }
+        {
+            int[] array = new int[] { 10, 5, 3, 4 };
+            swapEven(array);
+            System.out.println(Arrays.toString(array));
+        }
+        {
+            int[] array = new int[] { 100, 2, 3, 4, 5 };
+            swapEven(array);
+            System.out.println(Arrays.toString(array));
+        }
+        {
+            int[] array = new int[] { 100, 2, 3, 45, 33, 8, 4, 54 };
+            swapEven(array);
+            System.out.println(Arrays.toString(array));
+        }
     }
+
 }
+
+
+
+
