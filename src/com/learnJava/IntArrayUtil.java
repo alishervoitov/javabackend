@@ -1028,65 +1028,95 @@ import java.util.Scanner;
 //    }
 //}
 
-class Tree {
-    private TreeNode root;
+//class Tree {
+//    private TreeNode root;
+//
+//    private class TreeNode {
+//        int data;
+//        TreeNode left;
+//        TreeNode right;
+//
+//        public TreeNode(int data) {
+//            this.data = data;
+//        }
+//    }
+//
+//    public void showTree() {
+//        visitNode(root);
+//        System.out.println();
+//    }
+//    private void visitNode(TreeNode node) { // Display the tree in infix form
+//        if(node != null) {
+//            visitNode(node.left);
+//            System.out.print(node.data + " ");
+//            visitNode(node.right);
+//        }
+//    }
+//
+//    public void addData(int value) {
+//        TreeNode newNode = new TreeNode(value);
+//        if(root == null) {
+//            root = newNode;
+//            return;
+//        } else {
+//            addNode(root, newNode);
+//        }
+//    }
+//    private TreeNode addNode(TreeNode current, TreeNode newNode) {
+//        if (current == null) {
+//            return newNode;
+//        } else if(newNode.data < current.data) {
+//            current.left = addNode(current.left, newNode);
+//        } else if (newNode.data > current.data) {
+//            current.right = addNode(current.right, newNode);
+//        }
+//        return current;
+//    }
+//}
+//
+//public class DemoTree {
+//    public static void main(String[] args) {
+//        Tree tree = new Tree();
+//
+//        tree.addData(8);
+//        tree.addData(6);
+//        tree.addData(2);
+//        tree.addData(1);
+//        tree.addData(3);
+//        tree.addData(7);
+//        tree.addData(11);
+//
+//        tree.showTree();
+//    }
+//}
 
-    private class TreeNode {
-        int data;
-        TreeNode left;
-        TreeNode right;
 
-        public TreeNode(int data) {
-            this.data = data;
+import java.util.Arrays;
+
+public class IntArrayUtil {
+
+    public static void swapEven(int[] array) {
+        int left = 0;
+        int right = array.length - 1;
+
+        while (left < right) {
+            if (array[left] % 2 == 0 && array[right] % 2 == 0) {
+                int temp = array[left];
+                array[left] = array[right];
+                array[right] = temp;
+            }
+            left++;
+            right--;
         }
     }
 
-    public void showTree() {
-        visitNode(root);
-        System.out.println();
-    }
-    private void visitNode(TreeNode node) { // Display the tree in infix form
-        if(node != null) {
-            visitNode(node.left);
-            System.out.print(node.data + " ");
-            visitNode(node.right);
-        }
-    }
-
-    public void addData(int value) {
-        TreeNode newNode = new TreeNode(value);
-        if(root == null) {
-            root = newNode;
-            return;
-        } else {
-            addNode(root, newNode);
-        }
-    }
-    private TreeNode addNode(TreeNode current, TreeNode newNode) {
-        if (current == null) {
-            return newNode;
-        } else if(newNode.data < current.data) {
-            current.left = addNode(current.left, newNode);
-        } else if (newNode.data > current.data) {
-            current.right = addNode(current.right, newNode);
-        }
-        return current;
-    }
-}
-
-public class DemoTree {
     public static void main(String[] args) {
-        Tree tree = new Tree();
+        int[] arr = {2, 3, 4, 5, 6};
 
-        tree.addData(8);
-        tree.addData(6);
-        tree.addData(2);
-        tree.addData(1);
-        tree.addData(3);
-        tree.addData(7);
-        tree.addData(11);
+        System.out.println("Before: " + Arrays.toString(arr));
 
-        tree.showTree();
+        swapEven(arr);
+
+        System.out.println("After:  " + Arrays.toString(arr));
     }
 }
-
