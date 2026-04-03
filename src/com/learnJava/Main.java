@@ -1188,9 +1188,96 @@ import java.util.Scanner;
 //
 //}
 
-import java.util.Arrays;
-public class IntArrayUtil {
+//import java.util.Arrays;
+//public class IntArrayUtil {
+//
+//    public static int maximumDistance(int[] array) {
+//        if (array == null || array.length == 0) {
+//            return 0;
+//        }
+//
+//        int maxVal = array[0];
+//        for (int i = 1; i < array.length; i++) {
+//            if (array[i] > maxVal) {
+//                maxVal = array[i];
+//            }
+//        }
+//
+//        int firstIndex = -1;
+//        int lastIndex = -1;
+//
+//        for (int i = 0; i < array.length; i++) {
+//            if (array[i] == maxVal) {
+//                if (firstIndex == -1) {
+//                    firstIndex = i;
+//                }
+//                lastIndex = i;
+//            }
+//        }
+//
+//        return lastIndex - firstIndex;
+//    }
+//
+//    public static void main(String[] args) {
+//        {
+//            int[] array = null;
+//            System.out.println("result = " + maximumDistance(array));
+//        }
+//        {
+//            int[] array = new int[] {};
+//            System.out.println("result = " + maximumDistance(array));
+//        }
+//        {
+//            int[] array = new int[] { 4, 100, 3, 4 };
+//            System.out.println("result = " + maximumDistance(array));
+//        }
+//        {
+//            int[] array = new int[] { 5, 50, 50, 4, 5 };
+//            System.out.println("result = " + maximumDistance(array));
+//        }
+//        {
+//            int[] array = new int[] { 5, 350, 350, 4, 350 };
+//            System.out.println("result = " + maximumDistance(array));
+//        }
+//        {
+//            int[] array = new int[] { 10, 10, 10, 10, 10 };
+//            System.out.println("result = " + maximumDistance(array));
+//        }
+//    }
+//
+//}
 
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Massiv elementlari sonini kiriting: ");
+        int n = scanner.nextInt();
+
+        // Bo'sh massiv holatini tekshirish
+        if (n <= 0) {
+            System.out.println("Natija: 0");
+            return;
+        }
+
+        int[] nums = new int[n];
+
+        // 2. Massiv elementlarini birma-bir kiritish
+        System.out.println(n + " ta sonni kiriting:");
+        for (int i = 0; i < n; i++) {
+            nums[i] = scanner.nextInt();
+        }
+
+        // 3. Hisoblash metodini chaqirish
+        int result = IntArrayUtil.maximumDistance(nums);
+
+        System.out.println("Natija (maksimal qiymatlar orasidagi masofa): " + result);
+    }
+}
+
+class IntArrayUtil {
     public static int maximumDistance(int[] array) {
         if (array == null || array.length == 0) {
             return 0;
@@ -1203,6 +1290,7 @@ public class IntArrayUtil {
             }
         }
 
+        // Birinchi va oxirgi indekslarni topish
         int firstIndex = -1;
         int lastIndex = -1;
 
@@ -1217,36 +1305,6 @@ public class IntArrayUtil {
 
         return lastIndex - firstIndex;
     }
-
-    public static void main(String[] args) {
-        {
-            int[] array = null;
-            System.out.println("result = " + maximumDistance(array));
-        }
-        {
-            int[] array = new int[] {};
-            System.out.println("result = " + maximumDistance(array));
-        }
-        {
-            int[] array = new int[] { 4, 100, 3, 4 };
-            System.out.println("result = " + maximumDistance(array));
-        }
-        {
-            int[] array = new int[] { 5, 50, 50, 4, 5 };
-            System.out.println("result = " + maximumDistance(array));
-        }
-        {
-            int[] array = new int[] { 5, 350, 350, 4, 350 };
-            System.out.println("result = " + maximumDistance(array));
-        }
-        {
-            int[] array = new int[] { 10, 10, 10, 10, 10 };
-            System.out.println("result = " + maximumDistance(array));
-        }
-    }
-
 }
-
-
 
 
