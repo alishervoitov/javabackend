@@ -1134,53 +1134,114 @@ import java.util.Scanner;
 //    }
 //}
 
-import java.util.Arrays;
 
+
+//import java.util.Arrays;
+//
+//public class IntArrayUtil {
+//
+//    public static void swapEven(int[] array) {
+//        if (array == null || array.length == 0) return;
+//
+//        int left = 0;
+//        int right = array.length - 1;
+//
+//        while (left < right) {
+//            // check if both are even
+//            if (array[left] % 2 == 0 && array[right] % 2 == 0) {
+//                int temp = array[left];
+//                array[left] = array[right];
+//                array[right] = temp;
+//            }
+//            left++;
+//            right--;
+//        }
+//    }
+//
+//    public static void main(String[] args) {
+//        {
+//            int[] array = null;
+//            swapEven(array);
+//            System.out.println(Arrays.toString(array));
+//        }
+//        {
+//            int[] array = new int[] {};
+//            swapEven(array);
+//            System.out.println(Arrays.toString(array));
+//        }
+//        {
+//            int[] array = new int[] { 10, 5, 3, 4 };
+//            swapEven(array);
+//            System.out.println(Arrays.toString(array));
+//        }
+//        {
+//            int[] array = new int[] { 100, 2, 3, 4, 5 };
+//            swapEven(array);
+//            System.out.println(Arrays.toString(array));
+//        }
+//        {
+//            int[] array = new int[] { 100, 2, 3, 45, 33, 8, 4, 54 };
+//            swapEven(array);
+//            System.out.println(Arrays.toString(array));
+//        }
+//    }
+//
+//}
+
+import java.util.Arrays;
 public class IntArrayUtil {
 
-    public static void swapEven(int[] array) {
-        if (array == null || array.length == 0) return;
-
-        int left = 0;
-        int right = array.length - 1;
-
-        while (left < right) {
-            // check if both are even
-            if (array[left] % 2 == 0 && array[right] % 2 == 0) {
-                int temp = array[left];
-                array[left] = array[right];
-                array[right] = temp;
-            }
-            left++;
-            right--;
+    public static int maximumDistance(int[] array) {
+        if (array == null || array.length == 0) {
+            return 0;
         }
+
+        int maxVal = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > maxVal) {
+                maxVal = array[i];
+            }
+        }
+
+        int firstIndex = -1;
+        int lastIndex = -1;
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == maxVal) {
+                if (firstIndex == -1) {
+                    firstIndex = i;
+                }
+                lastIndex = i;
+            }
+        }
+
+        return lastIndex - firstIndex;
     }
 
     public static void main(String[] args) {
         {
             int[] array = null;
-            swapEven(array);
-            System.out.println(Arrays.toString(array));
+            System.out.println("result = " + maximumDistance(array));
         }
         {
             int[] array = new int[] {};
-            swapEven(array);
-            System.out.println(Arrays.toString(array));
+            System.out.println("result = " + maximumDistance(array));
         }
         {
-            int[] array = new int[] { 10, 5, 3, 4 };
-            swapEven(array);
-            System.out.println(Arrays.toString(array));
+            int[] array = new int[] { 4, 100, 3, 4 };
+            System.out.println("result = " + maximumDistance(array));
         }
         {
-            int[] array = new int[] { 100, 2, 3, 4, 5 };
-            swapEven(array);
-            System.out.println(Arrays.toString(array));
+            int[] array = new int[] { 5, 50, 50, 4, 5 };
+            System.out.println("result = " + maximumDistance(array));
         }
         {
-            int[] array = new int[] { 100, 2, 3, 45, 33, 8, 4, 54 };
-            swapEven(array);
-            System.out.println(Arrays.toString(array));
+            int[] array = new int[] { 5, 350, 350, 4, 350 };
+            System.out.println("result = " + maximumDistance(array));
+        }
+        {
+            int[] array = new int[] { 10, 10, 10, 10, 10 };
+            System.out.println("result = " + maximumDistance(array));
         }
     }
 
