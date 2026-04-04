@@ -1247,64 +1247,145 @@ import java.util.Scanner;
 //
 //}
 
+//import java.util.Scanner;
+
+//public class Main {
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//
+//        System.out.print("Massiv elementlari sonini kiriting: ");
+//        int n = scanner.nextInt();
+//
+//        // Bo'sh massiv holatini tekshirish
+//        if (n <= 0) {
+//            System.out.println("Natija: 0");
+//            return;
+//        }
+//
+//        int[] nums = new int[n];
+//
+//        // 2. Massiv elementlarini birma-bir kiritish
+//        System.out.println(n + " ta sonni kiriting:");
+//        for (int i = 0; i < n; i++) {
+//            nums[i] = scanner.nextInt();
+//        }
+//
+//        // 3. Hisoblash metodini chaqirish
+//        int result = IntArrayUtil.maximumDistance(nums);
+//
+//        System.out.println("Natija (maksimal qiymatlar orasidagi masofa): " + result);
+//    }
+//}
+//
+//class IntArrayUtil {
+//    public static int maximumDistance(int[] array) {
+//        if (array == null || array.length == 0) {
+//            return 0;
+//        }
+//
+//        int maxVal = array[0];
+//        for (int i = 1; i < array.length; i++) {
+//            if (array[i] > maxVal) {
+//                maxVal = array[i];
+//            }
+//        }
+//
+//        // Birinchi va oxirgi indekslarni topish
+//        int firstIndex = -1;
+//        int lastIndex = -1;
+//
+//        for (int i = 0; i < array.length; i++) {
+//            if (array[i] == maxVal) {
+//                if (firstIndex == -1) {
+//                    firstIndex = i;
+//                }
+//                lastIndex = i;
+//            }
+//        }
+//
+//        return lastIndex - firstIndex;
+//    }
+//}
+
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
+        // Konsoldan ma'lumot kiritish uchun Scanner
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("--- Massiv tahlili dasturi ---");
         System.out.print("Massiv elementlari sonini kiriting: ");
         int n = scanner.nextInt();
 
-        // Bo'sh massiv holatini tekshirish
-        if (n <= 0) {
-            System.out.println("Natija: 0");
-            return;
-        }
+        // Massivni yaratish
+        int[] numbers = new int[n];
 
-        int[] nums = new int[n];
-
-        // 2. Massiv elementlarini birma-bir kiritish
+        // Elementlarni kiritish
         System.out.println(n + " ta sonni kiriting:");
         for (int i = 0; i < n; i++) {
-            nums[i] = scanner.nextInt();
+            System.out.print((i + 1) + "-element: ");
+            numbers[i] = scanner.nextInt();
         }
 
-        // 3. Hisoblash metodini chaqirish
-        int result = IntArrayUtil.maximumDistance(nums);
+        // Natijalarni hisoblash va chiqarish
+        System.out.println("\n--- Natijalar ---");
 
-        System.out.println("Natija (maksimal qiymatlar orasidagi masofa): " + result);
+        int frequent = findMostFrequent(numbers);
+        System.out.println("Eng ko'p takrorlangan son: " + frequent);
+
+        int maxDist = findMaximumDistance(numbers);
+        System.out.println("Maksimal qiymatlar orasidagi masofa: " + maxDist);
     }
-}
 
-class IntArrayUtil {
-    public static int maximumDistance(int[] array) {
-        if (array == null || array.length == 0) {
-            return 0;
-        }
+    /**
+     * Eng ko'p takrorlangan elementni topuvchi metod
+     */
+    public static int findMostFrequent(int[] array) {
+        if (array.length == 0) return 0;
 
-        int maxVal = array[0];
-        for (int i = 1; i < array.length; i++) {
-            if (array[i] > maxVal) {
-                maxVal = array[i];
-            }
-        }
-
-        // Birinchi va oxirgi indekslarni topish
-        int firstIndex = -1;
-        int lastIndex = -1;
+        int mostFrequentElement = array[0];
+        int maxCount = 0;
 
         for (int i = 0; i < array.length; i++) {
-            if (array[i] == maxVal) {
-                if (firstIndex == -1) {
-                    firstIndex = i;
+            int currentCount = 0;
+            for (int j = 0; j < array.length; j++) {
+                if (array[i] == array[j]) {
+                    currentCount++;
                 }
-                lastIndex = i;
+            }
+
+            // Agar yangi rekord o'rnatilsa, saqlab qolamiz
+            if (currentCount > maxCount) {
+                maxCount = currentCount;
+                mostFrequentElement = array[i];
             }
         }
+        return mostFrequentElement;
+    }
 
-        return lastIndex - firstIndex;
+    /**
+     * Eng katta sonning birinchi va oxirgi indeksi orasidagi masofa
+     */
+    public static int findMaximumDistance(int[] array) {
+        if (array.length == 0) return 0;
+
+        // 1. Max topish
+        int maxVal = array[0];
+        for (int x : array) {
+            if (x > maxVal) maxVal = x;
+        }
+
+        // 2. Birinchi va oxirgi pozitsiyalar
+        int first = -1;
+        int last = -1;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == maxVal) {
+                if (first == -1) first = i;
+                last = i;
+            }
+        }
+        return last - first;
     }
 }
-
-
