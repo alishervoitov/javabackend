@@ -1307,85 +1307,142 @@ import java.util.Scanner;
 //    }
 //}
 
+//import java.util.Scanner;
+//
+//public class Main {
+//
+//    public static void main(String[] args) {
+//        // Konsoldan ma'lumot kiritish uchun Scanner
+//        Scanner scanner = new Scanner(System.in);
+//
+//        System.out.println("--- Massiv tahlili dasturi ---");
+//        System.out.print("Massiv elementlari sonini kiriting: ");
+//        int n = scanner.nextInt();
+//
+//        // Massivni yaratish
+//        int[] numbers = new int[n];
+//
+//        // Elementlarni kiritish
+//        System.out.println(n + " ta sonni kiriting:");
+//        for (int i = 0; i < n; i++) {
+//            System.out.print((i + 1) + "-element: ");
+//            numbers[i] = scanner.nextInt();
+//        }
+//
+//        // Natijalarni hisoblash va chiqarish
+//        System.out.println("\n--- Natijalar ---");
+//
+//        int frequent = findMostFrequent(numbers);
+//        System.out.println("Eng ko'p takrorlangan son: " + frequent);
+//
+//        int maxDist = findMaximumDistance(numbers);
+//        System.out.println("Maksimal qiymatlar orasidagi masofa: " + maxDist);
+//    }
+//
+//    /**
+//     * Eng ko'p takrorlangan elementni topuvchi metod
+//     */
+//    public static int findMostFrequent(int[] array) {
+//        if (array.length == 0) return 0;
+//
+//        int mostFrequentElement = array[0];
+//        int maxCount = 0;
+//
+//        for (int i = 0; i < array.length; i++) {
+//            int currentCount = 0;
+//            for (int j = 0; j < array.length; j++) {
+//                if (array[i] == array[j]) {
+//                    currentCount++;
+//                }
+//            }
+//
+//            // Agar yangi rekord o'rnatilsa, saqlab qolamiz
+//            if (currentCount > maxCount) {
+//                maxCount = currentCount;
+//                mostFrequentElement = array[i];
+//            }
+//        }
+//        return mostFrequentElement;
+//    }
+//
+//    /**
+//     * Eng katta sonning birinchi va oxirgi indeksi orasidagi masofa
+//     */
+//    public static int findMaximumDistance(int[] array) {
+//        if (array.length == 0) return 0;
+//
+//        // 1. Max topish
+//        int maxVal = array[0];
+//        for (int x : array) {
+//            if (x > maxVal) maxVal = x;
+//        }
+//
+//        // 2. Birinchi va oxirgi pozitsiyalar
+//        int first = -1;
+//        int last = -1;
+//        for (int i = 0; i < array.length; i++) {
+//            if (array[i] == maxVal) {
+//                if (first == -1) first = i;
+//                last = i;
+//            }
+//        }
+//        return last - first;
+//    }
+//}
+
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
-        // Konsoldan ma'lumot kiritish uchun Scanner
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("--- Massiv tahlili dasturi ---");
-        System.out.print("Massiv elementlari sonini kiriting: ");
+        System.out.println("=== Juft va Toq sonlar tahlili ===");
+        System.out.print("Massiv o'lchamini kiriting: ");
         int n = scanner.nextInt();
 
-        // Massivni yaratish
         int[] numbers = new int[n];
-
-        // Elementlarni kiritish
         System.out.println(n + " ta sonni kiriting:");
         for (int i = 0; i < n; i++) {
-            System.out.print((i + 1) + "-element: ");
+            System.out.print((i + 1) + "-son: ");
             numbers[i] = scanner.nextInt();
         }
 
-        // Natijalarni hisoblash va chiqarish
-        System.out.println("\n--- Natijalar ---");
+        // Metodlarni chaqirish
+        int evenSum = calculateEvenSum(numbers);
+        int oddSum = calculateOddSum(numbers);
+        int difference = Math.abs(evenSum - oddSum); // Musbat farqni olish
 
-        int frequent = findMostFrequent(numbers);
-        System.out.println("Eng ko'p takrorlangan son: " + frequent);
-
-        int maxDist = findMaximumDistance(numbers);
-        System.out.println("Maksimal qiymatlar orasidagi masofa: " + maxDist);
+        // Natijalarni chiqarish
+        System.out.println("\n--- Natija ---");
+        System.out.println("Juft sonlar yig'indisi: " + evenSum);
+        System.out.println("Toq sonlar yig'indisi: " + oddSum);
+        System.out.println("Ular orasidagi farq: " + difference);
     }
 
     /**
-     * Eng ko'p takrorlangan elementni topuvchi metod
+     * Juft sonlar yig'indisini hisoblovchi metod
      */
-    public static int findMostFrequent(int[] array) {
-        if (array.length == 0) return 0;
-
-        int mostFrequentElement = array[0];
-        int maxCount = 0;
-
-        for (int i = 0; i < array.length; i++) {
-            int currentCount = 0;
-            for (int j = 0; j < array.length; j++) {
-                if (array[i] == array[j]) {
-                    currentCount++;
-                }
-            }
-
-            // Agar yangi rekord o'rnatilsa, saqlab qolamiz
-            if (currentCount > maxCount) {
-                maxCount = currentCount;
-                mostFrequentElement = array[i];
+    public static int calculateEvenSum(int[] array) {
+        int sum = 0;
+        for (int num : array) {
+            if (num % 2 == 0) { // Juftlikka tekshirish
+                sum += num;
             }
         }
-        return mostFrequentElement;
+        return sum;
     }
 
     /**
-     * Eng katta sonning birinchi va oxirgi indeksi orasidagi masofa
+     * Toq sonlar yig'indisini hisoblovchi metod
      */
-    public static int findMaximumDistance(int[] array) {
-        if (array.length == 0) return 0;
-
-        // 1. Max topish
-        int maxVal = array[0];
-        for (int x : array) {
-            if (x > maxVal) maxVal = x;
-        }
-
-        // 2. Birinchi va oxirgi pozitsiyalar
-        int first = -1;
-        int last = -1;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == maxVal) {
-                if (first == -1) first = i;
-                last = i;
+    public static int calculateOddSum(int[] array) {
+        int sum = 0;
+        for (int num : array) {
+            if (num % 2 != 0) { // Toqlikka tekshirish
+                sum += num;
             }
         }
-        return last - first;
+        return sum;
     }
 }
+
