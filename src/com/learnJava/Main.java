@@ -1493,20 +1493,70 @@ import java.util.Scanner;
 //    }
 //}
 
+//import java.util.Scanner;
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//
+//        System.out.println("=== Ikkinchi eng katta elementni topish ===");
+//        System.out.print("Massiv o'lchamini kiriting: ");
+//        int n = scanner.nextInt();
+//
+//        if (n < 2) {
+//            System.out.println("Ikkinchi elementni topish uchun kamida 2 ta son kiriting!");
+//            return;
+//        }
+//
+//        int[] numbers = new int[n];
+//        System.out.println(n + " ta sonni kiriting:");
+//        for (int i = 0; i < n; i++) {
+//            System.out.print((i + 1) + "-son: ");
+//            numbers[i] = scanner.nextInt();
+//        }
+//
+//        // Metodni chaqirish
+//        int secondMax = findSecondLargest(numbers);
+//
+//        if (secondMax == Integer.MIN_VALUE) {
+//            System.out.println("Ikkinchi eng katta element mavjud emas (barcha sonlar teng bo'lishi mumkin).");
+//        } else {
+//            System.out.println("\nNatija: " + secondMax);
+//        }
+//    }
+//
+//    /**
+//     * Ikkinchi eng katta elementni topuvchi metod
+//     */
+//    public static int findSecondLargest(int[] array) {
+//        int max = Integer.MIN_VALUE;
+//        int secondMax = Integer.MIN_VALUE;
+//
+//        for (int num : array) {
+//            if (num > max) {
+//                // Agar yangi eng katta son topilsa:
+//                // Avvalgi max endi ikkinchi o'ringa tushadi
+//                secondMax = max;
+//                max = num;
+//            } else if (num > secondMax && num < max) {
+//                // Agar son max dan kichik bo'lsa, lekin joriy secondMax dan katta bo'lsa
+//                secondMax = num;
+//            }
+//        }
+//        return secondMax;
+//    }
+//}
+
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("=== Ikkinchi eng katta elementni topish ===");
+        System.out.println("=== Bubble Sort (Saralash) dasturi ===");
         System.out.print("Massiv o'lchamini kiriting: ");
         int n = scanner.nextInt();
-
-        if (n < 2) {
-            System.out.println("Ikkinchi elementni topish uchun kamida 2 ta son kiriting!");
-            return;
-        }
 
         int[] numbers = new int[n];
         System.out.println(n + " ta sonni kiriting:");
@@ -1515,37 +1565,31 @@ public class Main {
             numbers[i] = scanner.nextInt();
         }
 
-        // Metodni chaqirish
-        int secondMax = findSecondLargest(numbers);
+        System.out.println("\nSaralashdan oldin: " + Arrays.toString(numbers));
 
-        if (secondMax == Integer.MIN_VALUE) {
-            System.out.println("Ikkinchi eng katta element mavjud emas (barcha sonlar teng bo'lishi mumkin).");
-        } else {
-            System.out.println("\nNatija: " + secondMax);
-        }
+        // Saralash metodini chaqiramiz
+        bubbleSort(numbers);
+
+        System.out.println("Saralashdan keyin (O'sish tartibida): " + Arrays.toString(numbers));
     }
 
     /**
-     * Ikkinchi eng katta elementni topuvchi metod
+     * Bubble Sort algoritmi
      */
-    public static int findSecondLargest(int[] array) {
-        int max = Integer.MIN_VALUE;
-        int secondMax = Integer.MIN_VALUE;
-
-        for (int num : array) {
-            if (num > max) {
-                // Agar yangi eng katta son topilsa:
-                // Avvalgi max endi ikkinchi o'ringa tushadi
-                secondMax = max;
-                max = num;
-            } else if (num > secondMax && num < max) {
-                // Agar son max dan kichik bo'lsa, lekin joriy secondMax dan katta bo'lsa
-                secondMax = num;
+    public static void bubbleSort(int[] array) {
+        int n = array.length;
+        // Tashqi sikl har bir element uchun aylanishni ta'minlaydi
+        for (int i = 0; i < n - 1; i++) {
+            // Ichki sikl qo'shni elementlarni solishtiradi
+            for (int j = 0; j < n - i - 1; j++) {
+                // Agar chapdagi element o'ngdagisidan katta bo'lsa - o'rnini almashtiramiz
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
             }
         }
-        return secondMax;
     }
 }
-
-
 
