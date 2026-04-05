@@ -1390,59 +1390,107 @@ import java.util.Scanner;
 //    }
 //}
 
+//import java.util.Scanner;
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//
+//        System.out.println("=== Juft va Toq sonlar tahlili ===");
+//        System.out.print("Massiv o'lchamini kiriting: ");
+//        int n = scanner.nextInt();
+//
+//        int[] numbers = new int[n];
+//        System.out.println(n + " ta sonni kiriting:");
+//        for (int i = 0; i < n; i++) {
+//            System.out.print((i + 1) + "-son: ");
+//            numbers[i] = scanner.nextInt();
+//        }
+//
+//        // Metodlarni chaqirish
+//        int evenSum = calculateEvenSum(numbers);
+//        int oddSum = calculateOddSum(numbers);
+//        int difference = Math.abs(evenSum - oddSum); // Musbat farqni olish
+//
+//        // Natijalarni chiqarish
+//        System.out.println("\n--- Natija ---");
+//        System.out.println("Juft sonlar yig'indisi: " + evenSum);
+//        System.out.println("Toq sonlar yig'indisi: " + oddSum);
+//        System.out.println("Ular orasidagi farq: " + difference);
+//    }
+//
+//    /**
+//     * Juft sonlar yig'indisini hisoblovchi metod
+//     */
+//    public static int calculateEvenSum(int[] array) {
+//        int sum = 0;
+//        for (int num : array) {
+//            if (num % 2 == 0) { // Juftlikka tekshirish
+//                sum += num;
+//            }
+//        }
+//        return sum;
+//    }
+//
+//    /**
+//     * Toq sonlar yig'indisini hisoblovchi metod
+//     */
+//    public static int calculateOddSum(int[] array) {
+//        int sum = 0;
+//        for (int num : array) {
+//            if (num % 2 != 0) { // Toqlikka tekshirish
+//                sum += num;
+//            }
+//        }
+//        return sum;
+//    }
+//}
+
+
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("=== Juft va Toq sonlar tahlili ===");
-        System.out.print("Massiv o'lchamini kiriting: ");
+        System.out.println("=== Massivni teskari qilish dasturi ===");
+        System.out.print("Massiv elementlari sonini kiriting: ");
         int n = scanner.nextInt();
 
         int[] numbers = new int[n];
         System.out.println(n + " ta sonni kiriting:");
         for (int i = 0; i < n; i++) {
-            System.out.print((i + 1) + "-son: ");
+            System.out.print((i + 1) + "-element: ");
             numbers[i] = scanner.nextInt();
         }
 
-        // Metodlarni chaqirish
-        int evenSum = calculateEvenSum(numbers);
-        int oddSum = calculateOddSum(numbers);
-        int difference = Math.abs(evenSum - oddSum); // Musbat farqni olish
+        System.out.println("\nAsl holati: " + Arrays.toString(numbers));
 
-        // Natijalarni chiqarish
-        System.out.println("\n--- Natija ---");
-        System.out.println("Juft sonlar yig'indisi: " + evenSum);
-        System.out.println("Toq sonlar yig'indisi: " + oddSum);
-        System.out.println("Ular orasidagi farq: " + difference);
+        // Massivni teskari qilish metodini chaqiramiz
+        reverseArray(numbers);
+
+        System.out.println("Teskari holati: " + Arrays.toString(numbers));
     }
 
     /**
-     * Juft sonlar yig'indisini hisoblovchi metod
+     * Massiv elementlarini o'z joyida (in-place) teskari qiluvchi metod
      */
-    public static int calculateEvenSum(int[] array) {
-        int sum = 0;
-        for (int num : array) {
-            if (num % 2 == 0) { // Juftlikka tekshirish
-                sum += num;
-            }
-        }
-        return sum;
-    }
+    public static void reverseArray(int[] array) {
+        int left = 0;               // Massiv boshi
+        int right = array.length - 1; // Massiv oxiri
 
-    /**
-     * Toq sonlar yig'indisini hisoblovchi metod
-     */
-    public static int calculateOddSum(int[] array) {
-        int sum = 0;
-        for (int num : array) {
-            if (num % 2 != 0) { // Toqlikka tekshirish
-                sum += num;
-            }
+        while (left < right) {
+            // Elementlar o'rnini almashtirish (Swap)
+            int temp = array[left];
+            array[left] = array[right];
+            array[right] = temp;
+
+            // Ko'rsatkichlarni markazga qarab suramiz
+            left++;
+            right--;
         }
-        return sum;
     }
 }
+
 
