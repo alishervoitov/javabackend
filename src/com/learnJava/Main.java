@@ -1447,50 +1447,105 @@ import java.util.Scanner;
 //}
 
 
-import java.util.Arrays;
+//import java.util.Arrays;
+//import java.util.Scanner;
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//
+//        System.out.println("=== Massivni teskari qilish dasturi ===");
+//        System.out.print("Massiv elementlari sonini kiriting: ");
+//        int n = scanner.nextInt();
+//
+//        int[] numbers = new int[n];
+//        System.out.println(n + " ta sonni kiriting:");
+//        for (int i = 0; i < n; i++) {
+//            System.out.print((i + 1) + "-element: ");
+//            numbers[i] = scanner.nextInt();
+//        }
+//
+//        System.out.println("\nAsl holati: " + Arrays.toString(numbers));
+//
+//        // Massivni teskari qilish metodini chaqiramiz
+//        reverseArray(numbers);
+//
+//        System.out.println("Teskari holati: " + Arrays.toString(numbers));
+//    }
+//
+//    /**
+//     * Massiv elementlarini o'z joyida (in-place) teskari qiluvchi metod
+//     */
+//    public static void reverseArray(int[] array) {
+//        int left = 0;               // Massiv boshi
+//        int right = array.length - 1; // Massiv oxiri
+//
+//        while (left < right) {
+//            // Elementlar o'rnini almashtirish (Swap)
+//            int temp = array[left];
+//            array[left] = array[right];
+//            array[right] = temp;
+//
+//            // Ko'rsatkichlarni markazga qarab suramiz
+//            left++;
+//            right--;
+//        }
+//    }
+//}
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("=== Massivni teskari qilish dasturi ===");
-        System.out.print("Massiv elementlari sonini kiriting: ");
+        System.out.println("=== Ikkinchi eng katta elementni topish ===");
+        System.out.print("Massiv o'lchamini kiriting: ");
         int n = scanner.nextInt();
+
+        if (n < 2) {
+            System.out.println("Ikkinchi elementni topish uchun kamida 2 ta son kiriting!");
+            return;
+        }
 
         int[] numbers = new int[n];
         System.out.println(n + " ta sonni kiriting:");
         for (int i = 0; i < n; i++) {
-            System.out.print((i + 1) + "-element: ");
+            System.out.print((i + 1) + "-son: ");
             numbers[i] = scanner.nextInt();
         }
 
-        System.out.println("\nAsl holati: " + Arrays.toString(numbers));
+        // Metodni chaqirish
+        int secondMax = findSecondLargest(numbers);
 
-        // Massivni teskari qilish metodini chaqiramiz
-        reverseArray(numbers);
-
-        System.out.println("Teskari holati: " + Arrays.toString(numbers));
+        if (secondMax == Integer.MIN_VALUE) {
+            System.out.println("Ikkinchi eng katta element mavjud emas (barcha sonlar teng bo'lishi mumkin).");
+        } else {
+            System.out.println("\nNatija: " + secondMax);
+        }
     }
 
     /**
-     * Massiv elementlarini o'z joyida (in-place) teskari qiluvchi metod
+     * Ikkinchi eng katta elementni topuvchi metod
      */
-    public static void reverseArray(int[] array) {
-        int left = 0;               // Massiv boshi
-        int right = array.length - 1; // Massiv oxiri
+    public static int findSecondLargest(int[] array) {
+        int max = Integer.MIN_VALUE;
+        int secondMax = Integer.MIN_VALUE;
 
-        while (left < right) {
-            // Elementlar o'rnini almashtirish (Swap)
-            int temp = array[left];
-            array[left] = array[right];
-            array[right] = temp;
-
-            // Ko'rsatkichlarni markazga qarab suramiz
-            left++;
-            right--;
+        for (int num : array) {
+            if (num > max) {
+                // Agar yangi eng katta son topilsa:
+                // Avvalgi max endi ikkinchi o'ringa tushadi
+                secondMax = max;
+                max = num;
+            } else if (num > secondMax && num < max) {
+                // Agar son max dan kichik bo'lsa, lekin joriy secondMax dan katta bo'lsa
+                secondMax = num;
+            }
         }
+        return secondMax;
     }
 }
+
 
 
