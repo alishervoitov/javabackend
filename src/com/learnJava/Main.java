@@ -1593,49 +1593,129 @@ import java.util.Scanner;
 //    }
 //}
 
-class Building {
-    String purpose;
-    String address;
-    int floors_number;
-    private String wallMaterial;
+//class Building {
+//    String purpose;
+//    String address;
+//    int floors_number;
+//    private String wallMaterial;
+//
+//    public Building() {  //default constructor
+//        this.purpose = " ";
+//        this.address = " ";
+//        this.floors_number = 0;
+//        this.wallMaterial = " ";
+//    }
+//
+//    public Building(String purpose, String address, int floors_number, String wallMaterial) {
+//        this.purpose = purpose;
+//        this.address = address;
+//        this.floors_number = floors_number;
+//        this.wallMaterial = wallMaterial;
+//    }
+//
+//    public void setWallMaterial (String wallMaterial) {
+//        this.wallMaterial = wallMaterial;
+//    }
+//
+//    public String getInfo() {
+//        return (" The purpose is " + purpose + ".\n Address: " + address+".\n Number of floors: " + floors_number + " and wall material is " + wallMaterial);
+//    }
+//}
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        Building cafe = new Building();
+//        cafe.purpose="organization of recreation";
+//        cafe.address="London, Baker Street";
+//        cafe.floors_number = 2;
+//        // cafe.wallMaterial="brick"; // error because of private type
+//        cafe.setWallMaterial("brick");
+//        System.out.println("Information about the cafe:\n" + cafe.getInfo());
+//
+//        Building shop = new Building("organization of shopping", "London, Crawford street", 1, "wood");
+//        System.out.println("Information about the shop:\n" + shop.getInfo());
+//    }
+//}
 
-    public Building() {  //default constructor
-        this.purpose = " ";
-        this.address = " ";
-        this.floors_number = 0;
-        this.wallMaterial = " ";
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+// 1. Massiv bilan ishlovchi maxsus klass
+class SmartArray {
+    private int[] data;
+
+    // Konstruktor: massivni qabul qilib oladi
+    public SmartArray(int[] inputData) {
+        this.data = inputData;
     }
 
-    public Building(String purpose, String address, int floors_number, String wallMaterial) {
-        this.purpose = purpose;
-        this.address = address;
-        this.floors_number = floors_number;
-        this.wallMaterial = wallMaterial;
+    // Maksimal qiymatli elementlar orasidagi masofani topish
+    public int getMaxDistance() {
+        if (data.length == 0) return 0;
+
+        int max = data[0];
+        for (int x : data) if (x > max) max = x;
+
+        int first = -1, last = -1;
+        for (int i = 0; i < data.length; i++) {
+            if (data[i] == max) {
+                if (first == -1) first = i;
+                last = i;
+            }
+        }
+        return last - first;
     }
 
-    public void setWallMaterial (String wallMaterial) {
-        this.wallMaterial = wallMaterial;
+    // Massivni o'sish tartibida saralash (Bubble Sort)
+    public void sort() {
+        for (int i = 0; i < data.length - 1; i++) {
+            for (int j = 0; j < data.length - i - 1; j++) {
+                if (data[j] > data[j + 1]) {
+                    int temp = data[j];
+                    data[j] = data[j + 1];
+                    data[j + 1] = temp;
+                }
+            }
+        }
     }
 
-    public String getInfo() {
-        return (" The purpose is " + purpose + ".\n Address: " + address+".\n Number of floors: " + floors_number + " and wall material is " + wallMaterial);
+    // Massivni chiroyli ko'rinishda chiqarish
+    public void printArray() {
+        System.out.println(Arrays.toString(data));
     }
 }
 
+// 2. Asosiy dastur klassi
 public class Main {
     public static void main(String[] args) {
-        Building cafe = new Building();
-        cafe.purpose="organization of recreation";
-        cafe.address="London, Baker Street";
-        cafe.floors_number = 2;
-        // cafe.wallMaterial="brick"; // error because of private type
-        cafe.setWallMaterial("brick");
-        System.out.println("Information about the cafe:\n" + cafe.getInfo());
+        Scanner scanner = new Scanner(System.in);
 
-        Building shop = new Building("organization of shopping", "London, Crawford street", 1, "wood");
-        System.out.println("Information about the shop:\n" + shop.getInfo());
+        System.out.print("Massiv o'lchamini kiriting: ");
+        int n = scanner.nextInt();
+        int[] input = new int[n];
+
+        System.out.println(n + " ta son kiriting:");
+        for (int i = 0; i < n; i++) {
+            input[i] = scanner.nextInt();
+        }
+
+        // SmartArray obyektini yaratamiz
+        SmartArray myArr = new SmartArray(input);
+
+        System.out.println("\n--- Amallar ---");
+
+        // Masofani hisoblash
+        int dist = myArr.getMaxDistance();
+        System.out.println("Maksimal elementlar masofasi: " + dist);
+
+        // Saralash va chiqarish
+        System.out.print("Saralashdan oldin: ");
+        myArr.printArray();
+
+        myArr.sort();
+
+        System.out.print("Saralashdan keyin: ");
+        myArr.printArray();
     }
 }
-
-
-
