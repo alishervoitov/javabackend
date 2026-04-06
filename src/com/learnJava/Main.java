@@ -1547,49 +1547,95 @@ import java.util.Scanner;
 //    }
 //}
 
-import java.util.Arrays;
-import java.util.Scanner;
+//import java.util.Arrays;
+//import java.util.Scanner;
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//
+//        System.out.println("=== Bubble Sort (Saralash) dasturi ===");
+//        System.out.print("Massiv o'lchamini kiriting: ");
+//        int n = scanner.nextInt();
+//
+//        int[] numbers = new int[n];
+//        System.out.println(n + " ta sonni kiriting:");
+//        for (int i = 0; i < n; i++) {
+//            System.out.print((i + 1) + "-son: ");
+//            numbers[i] = scanner.nextInt();
+//        }
+//
+//        System.out.println("\nSaralashdan oldin: " + Arrays.toString(numbers));
+//
+//        // Saralash metodini chaqiramiz
+//        bubbleSort(numbers);
+//
+//        System.out.println("Saralashdan keyin (O'sish tartibida): " + Arrays.toString(numbers));
+//    }
+//
+//    /**
+//     * Bubble Sort algoritmi
+//     */
+//    public static void bubbleSort(int[] array) {
+//        int n = array.length;
+//        // Tashqi sikl har bir element uchun aylanishni ta'minlaydi
+//        for (int i = 0; i < n - 1; i++) {
+//            // Ichki sikl qo'shni elementlarni solishtiradi
+//            for (int j = 0; j < n - i - 1; j++) {
+//                // Agar chapdagi element o'ngdagisidan katta bo'lsa - o'rnini almashtiramiz
+//                if (array[j] > array[j + 1]) {
+//                    int temp = array[j];
+//                    array[j] = array[j + 1];
+//                    array[j + 1] = temp;
+//                }
+//            }
+//        }
+//    }
+//}
+
+class Building {
+    String purpose;
+    String address;
+    int floors_number;
+    private String wallMaterial;
+
+    public Building() {  //default constructor
+        this.purpose = " ";
+        this.address = " ";
+        this.floors_number = 0;
+        this.wallMaterial = " ";
+    }
+
+    public Building(String purpose, String address, int floors_number, String wallMaterial) {
+        this.purpose = purpose;
+        this.address = address;
+        this.floors_number = floors_number;
+        this.wallMaterial = wallMaterial;
+    }
+
+    public void setWallMaterial (String wallMaterial) {
+        this.wallMaterial = wallMaterial;
+    }
+
+    public String getInfo() {
+        return (" The purpose is " + purpose + ".\n Address: " + address+".\n Number of floors: " + floors_number + " and wall material is " + wallMaterial);
+    }
+}
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Building cafe = new Building();
+        cafe.purpose="organization of recreation";
+        cafe.address="London, Baker Street";
+        cafe.floors_number = 2;
+        // cafe.wallMaterial="brick"; // error because of private type
+        cafe.setWallMaterial("brick");
+        System.out.println("Information about the cafe:\n" + cafe.getInfo());
 
-        System.out.println("=== Bubble Sort (Saralash) dasturi ===");
-        System.out.print("Massiv o'lchamini kiriting: ");
-        int n = scanner.nextInt();
-
-        int[] numbers = new int[n];
-        System.out.println(n + " ta sonni kiriting:");
-        for (int i = 0; i < n; i++) {
-            System.out.print((i + 1) + "-son: ");
-            numbers[i] = scanner.nextInt();
-        }
-
-        System.out.println("\nSaralashdan oldin: " + Arrays.toString(numbers));
-
-        // Saralash metodini chaqiramiz
-        bubbleSort(numbers);
-
-        System.out.println("Saralashdan keyin (O'sish tartibida): " + Arrays.toString(numbers));
-    }
-
-    /**
-     * Bubble Sort algoritmi
-     */
-    public static void bubbleSort(int[] array) {
-        int n = array.length;
-        // Tashqi sikl har bir element uchun aylanishni ta'minlaydi
-        for (int i = 0; i < n - 1; i++) {
-            // Ichki sikl qo'shni elementlarni solishtiradi
-            for (int j = 0; j < n - i - 1; j++) {
-                // Agar chapdagi element o'ngdagisidan katta bo'lsa - o'rnini almashtiramiz
-                if (array[j] > array[j + 1]) {
-                    int temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
-                }
-            }
-        }
+        Building shop = new Building("organization of shopping", "London, Crawford street", 1, "wood");
+        System.out.println("Information about the shop:\n" + shop.getInfo());
     }
 }
+
+
 
