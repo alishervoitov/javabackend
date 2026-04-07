@@ -1720,76 +1720,133 @@ import java.util.Scanner;
 //    }
 //}
 
+//
+//
+//import java.util.Scanner;
+//
+//// 1. Inkapsulyatsiyalangan klass
+//class BankAccount {
+//    // Private o'zgaruvchi - tashqaridan ko'rinmaydi
+//    private double balance;
+//    private String owner;
+//
+//    // Konstruktor
+//    public BankAccount(String owner, double initialBalance) {
+//        this.owner = owner;
+//        if (initialBalance > 0) {
+//            this.balance = initialBalance;
+//        }
+//    }
+//
+//    // Getter - balansni faqat ko'rish uchun
+//    public double getBalance() {
+//        return balance;
+//    }
+//
+//    // Depozit qo'yish metodi (Filtrlash bilan)
+//    public void deposit(double amount) {
+//        if (amount > 0) {
+//            balance += amount;
+//            System.out.println(amount + " so'm qo'shildi.");
+//        } else {
+//            System.out.println("Xato: Manfiy summa kiritish mumkin emas!");
+//        }
+//    }
+//
+//    // Pul yechish metodi
+//    public void withdraw(double amount) {
+//        if (amount > 0 && amount <= balance) {
+//            balance -= amount;
+//            System.out.println(amount + " so'm yechildi.");
+//        } else {
+//            System.out.println("Xato: Mablag' yetarli emas yoki noto'g'ri summa!");
+//        }
+//    }
+//
+//    public String getOwner() {
+//        return owner;
+//    }
+//}
+//
+//// 2. Asosiy klass
+//public class Main {
+//    public static void main(String[] args) {
+//        // Yangi hisob ochamiz
+//        BankAccount myAccount = new BankAccount("Ali Valiyev", 500000);
+//
+//        System.out.println("Mijoz: " + myAccount.getOwner());
+//        System.out.println("Boshlang'ich balans: " + myAccount.getBalance() + " so'm");
+//
+//        // Pul qo'shish
+//        myAccount.deposit(200000);
+//
+//        // Pul yechish
+//        myAccount.withdraw(100000);
+//
+//        // Natija
+//        System.out.println("Yakuniy balans: " + myAccount.getBalance() + " so'm");
+//
+//        // DIQQAT! Pastdagi qator xatolik beradi (chunki balance - private)
+//        // myAccount.balance = 0; // BU ISHLAMAYDI!
+//    }
+//}
 
+class Smartphone {
+    // Private maydonlar - tashqaridan yashirin
+    private String model;
+    private int batteryLevel; // 0 dan 100 gacha bo'lishi shart
 
-import java.util.Scanner;
-
-// 1. Inkapsulyatsiyalangan klass
-class BankAccount {
-    // Private o'zgaruvchi - tashqaridan ko'rinmaydi
-    private double balance;
-    private String owner;
-
-    // Konstruktor
-    public BankAccount(String owner, double initialBalance) {
-        this.owner = owner;
-        if (initialBalance > 0) {
-            this.balance = initialBalance;
-        }
+    public Smartphone(String model, int initialBattery) {
+        this.model = model;
+        setBatteryLevel(initialBattery); // Tekshiruvdan o'tkazamiz
     }
 
-    // Getter - balansni faqat ko'rish uchun
-    public double getBalance() {
-        return balance;
+    // Getter - Modelni o'qish uchun
+    public String getModel() {
+        return model;
     }
 
-    // Depozit qo'yish metodi (Filtrlash bilan)
-    public void deposit(double amount) {
-        if (amount > 0) {
-            balance += amount;
-            System.out.println(amount + " so'm qo'shildi.");
+    // Getter - Batareya quvvatini ko'rish uchun
+    public int getBatteryLevel() {
+        return batteryLevel;
+    }
+
+    // Setter - Batareya quvvatini xavfsiz o'zgartirish
+    public void setBatteryLevel(int level) {
+        if (level >= 0 && level <= 100) {
+            this.batteryLevel = level;
         } else {
-            System.out.println("Xato: Manfiy summa kiritish mumkin emas!");
+            System.out.println("Xato: Batareya quvvati 0-100 oralig'ida bo'lishi kerak!");
         }
     }
 
-    // Pul yechish metodi
-    public void withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance -= amount;
-            System.out.println(amount + " so'm yechildi.");
+    // Telefon ishlatilganda quvvat kamayishi
+    public void useApp(String appName) {
+        if (batteryLevel > 5) {
+            System.out.println(appName + " ishga tushdi...");
+            batteryLevel -= 5;
         } else {
-            System.out.println("Xato: Mablag' yetarli emas yoki noto'g'ri summa!");
+            System.out.println("Quvvat kam! Ilovani ochib bo'lmaydi.");
         }
-    }
-
-    public String getOwner() {
-        return owner;
     }
 }
 
-// 2. Asosiy klass
 public class Main {
     public static void main(String[] args) {
-        // Yangi hisob ochamiz
-        BankAccount myAccount = new BankAccount("Ali Valiyev", 500000);
+        Smartphone phone = new Smartphone("iPhone 15", 80);
 
-        System.out.println("Mijoz: " + myAccount.getOwner());
-        System.out.println("Boshlang'ich balans: " + myAccount.getBalance() + " so'm");
+        // To'g'ridan-to'g'ri kirish imkonsiz (Xato beradi):
+        // phone.batteryLevel = 150;
 
-        // Pul qo'shish
-        myAccount.deposit(200000);
+        // Faqat ruxsat berilgan usul bilan o'zgartiramiz:
+        phone.setBatteryLevel(95);
+        System.out.println(phone.getModel() + " quvvati: " + phone.getBatteryLevel() + "%");
 
-        // Pul yechish
-        myAccount.withdraw(100000);
+        phone.useApp("Telegram");
+        System.out.println("Hozirgi quvvat: " + phone.getBatteryLevel() + "%");
 
-        // Natija
-        System.out.println("Yakuniy balans: " + myAccount.getBalance() + " so'm");
-
-        // DIQQAT! Pastdagi qator xatolik beradi (chunki balance - private)
-        // myAccount.balance = 0; // BU ISHLAMAYDI!
+        // Noto'g'ri qiymat berishga urinish:
+        phone.setBatteryLevel(500); // Ekranda xatolik chiqadi, lekin qiymat o'zgarmaydi
     }
 }
-
-
 
