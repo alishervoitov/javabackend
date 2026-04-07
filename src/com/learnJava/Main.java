@@ -1638,84 +1638,158 @@ import java.util.Scanner;
 //}
 
 
-import java.util.Arrays;
+//import java.util.Arrays;
+//import java.util.Scanner;
+//
+//// 1. Massiv bilan ishlovchi maxsus klass
+//class SmartArray {
+//    private int[] data;
+//
+//    // Konstruktor: massivni qabul qilib oladi
+//    public SmartArray(int[] inputData) {
+//        this.data = inputData;
+//    }
+//
+//    // Maksimal qiymatli elementlar orasidagi masofani topish
+//    public int getMaxDistance() {
+//        if (data.length == 0) return 0;
+//
+//        int max = data[0];
+//        for (int x : data) if (x > max) max = x;
+//
+//        int first = -1, last = -1;
+//        for (int i = 0; i < data.length; i++) {
+//            if (data[i] == max) {
+//                if (first == -1) first = i;
+//                last = i;
+//            }
+//        }
+//        return last - first;
+//    }
+//
+//    // Massivni o'sish tartibida saralash (Bubble Sort)
+//    public void sort() {
+//        for (int i = 0; i < data.length - 1; i++) {
+//            for (int j = 0; j < data.length - i - 1; j++) {
+//                if (data[j] > data[j + 1]) {
+//                    int temp = data[j];
+//                    data[j] = data[j + 1];
+//                    data[j + 1] = temp;
+//                }
+//            }
+//        }
+//    }
+//
+//    // Massivni chiroyli ko'rinishda chiqarish
+//    public void printArray() {
+//        System.out.println(Arrays.toString(data));
+//    }
+//}
+//
+//// 2. Asosiy dastur klassi
+//public class Main {
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//
+//        System.out.print("Massiv o'lchamini kiriting: ");
+//        int n = scanner.nextInt();
+//        int[] input = new int[n];
+//
+//        System.out.println(n + " ta son kiriting:");
+//        for (int i = 0; i < n; i++) {
+//            input[i] = scanner.nextInt();
+//        }
+//
+//        // SmartArray obyektini yaratamiz
+//        SmartArray myArr = new SmartArray(input);
+//
+//        System.out.println("\n--- Amallar ---");
+//
+//        // Masofani hisoblash
+//        int dist = myArr.getMaxDistance();
+//        System.out.println("Maksimal elementlar masofasi: " + dist);
+//
+//        // Saralash va chiqarish
+//        System.out.print("Saralashdan oldin: ");
+//        myArr.printArray();
+//
+//        myArr.sort();
+//
+//        System.out.print("Saralashdan keyin: ");
+//        myArr.printArray();
+//    }
+//}
+
+
+
 import java.util.Scanner;
 
-// 1. Massiv bilan ishlovchi maxsus klass
-class SmartArray {
-    private int[] data;
+// 1. Inkapsulyatsiyalangan klass
+class BankAccount {
+    // Private o'zgaruvchi - tashqaridan ko'rinmaydi
+    private double balance;
+    private String owner;
 
-    // Konstruktor: massivni qabul qilib oladi
-    public SmartArray(int[] inputData) {
-        this.data = inputData;
-    }
-
-    // Maksimal qiymatli elementlar orasidagi masofani topish
-    public int getMaxDistance() {
-        if (data.length == 0) return 0;
-
-        int max = data[0];
-        for (int x : data) if (x > max) max = x;
-
-        int first = -1, last = -1;
-        for (int i = 0; i < data.length; i++) {
-            if (data[i] == max) {
-                if (first == -1) first = i;
-                last = i;
-            }
-        }
-        return last - first;
-    }
-
-    // Massivni o'sish tartibida saralash (Bubble Sort)
-    public void sort() {
-        for (int i = 0; i < data.length - 1; i++) {
-            for (int j = 0; j < data.length - i - 1; j++) {
-                if (data[j] > data[j + 1]) {
-                    int temp = data[j];
-                    data[j] = data[j + 1];
-                    data[j + 1] = temp;
-                }
-            }
+    // Konstruktor
+    public BankAccount(String owner, double initialBalance) {
+        this.owner = owner;
+        if (initialBalance > 0) {
+            this.balance = initialBalance;
         }
     }
 
-    // Massivni chiroyli ko'rinishda chiqarish
-    public void printArray() {
-        System.out.println(Arrays.toString(data));
+    // Getter - balansni faqat ko'rish uchun
+    public double getBalance() {
+        return balance;
+    }
+
+    // Depozit qo'yish metodi (Filtrlash bilan)
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println(amount + " so'm qo'shildi.");
+        } else {
+            System.out.println("Xato: Manfiy summa kiritish mumkin emas!");
+        }
+    }
+
+    // Pul yechish metodi
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println(amount + " so'm yechildi.");
+        } else {
+            System.out.println("Xato: Mablag' yetarli emas yoki noto'g'ri summa!");
+        }
+    }
+
+    public String getOwner() {
+        return owner;
     }
 }
 
-// 2. Asosiy dastur klassi
+// 2. Asosiy klass
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        // Yangi hisob ochamiz
+        BankAccount myAccount = new BankAccount("Ali Valiyev", 500000);
 
-        System.out.print("Massiv o'lchamini kiriting: ");
-        int n = scanner.nextInt();
-        int[] input = new int[n];
+        System.out.println("Mijoz: " + myAccount.getOwner());
+        System.out.println("Boshlang'ich balans: " + myAccount.getBalance() + " so'm");
 
-        System.out.println(n + " ta son kiriting:");
-        for (int i = 0; i < n; i++) {
-            input[i] = scanner.nextInt();
-        }
+        // Pul qo'shish
+        myAccount.deposit(200000);
 
-        // SmartArray obyektini yaratamiz
-        SmartArray myArr = new SmartArray(input);
+        // Pul yechish
+        myAccount.withdraw(100000);
 
-        System.out.println("\n--- Amallar ---");
+        // Natija
+        System.out.println("Yakuniy balans: " + myAccount.getBalance() + " so'm");
 
-        // Masofani hisoblash
-        int dist = myArr.getMaxDistance();
-        System.out.println("Maksimal elementlar masofasi: " + dist);
-
-        // Saralash va chiqarish
-        System.out.print("Saralashdan oldin: ");
-        myArr.printArray();
-
-        myArr.sort();
-
-        System.out.print("Saralashdan keyin: ");
-        myArr.printArray();
+        // DIQQAT! Pastdagi qator xatolik beradi (chunki balance - private)
+        // myAccount.balance = 0; // BU ISHLAMAYDI!
     }
 }
+
+
+
