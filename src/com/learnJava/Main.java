@@ -1931,10 +1931,36 @@ import java.util.Scanner;
 //}
 
 
+//public class Main {
+//    public static void main(String[] args) {
+//        int num1, den1;
+//        int num2, den2;
+//
+//        num1 = 1;
+//        den1 = 2;
+//
+//        num2 = 5;
+//        den2 = 6;
+//
+//        add(num1, den1, num2, den2);
+//    }
+//
+//    public static void add(int n1, int d1, int n2, int d2) {
+//        int num3, den3;
+//
+//        den3 = d1 * d2;
+//        num3 = n1 * d2 + n2 * d1;
+//
+//        System.out.println(num3 + "/" + den3);
+//    }
+//}
+
 public class Main {
     public static void main(String[] args) {
         int num1, den1;
         int num2, den2;
+
+        int num3, den3;
 
         num1 = 1;
         den1 = 2;
@@ -1942,16 +1968,23 @@ public class Main {
         num2 = 5;
         den2 = 6;
 
-        add(num1, den1, num2, den2);
+        String result = add(num1, den1, num2, den2);
+        String[] param = result.split("/");
+
+        num3 = Integer.parseInt(param[0]);
+        den3 = Integer.parseInt(param[1]);
+
+        System.out.println(num3 + "/" + den3);
     }
 
-    public static void add(int n1, int d1, int n2, int d2) {
+    public static String add(int n1, int d1, int n2, int d2) {
         int num3, den3;
 
         den3 = d1 * d2;
         num3 = n1 * d2 + n2 * d1;
 
-        System.out.println(num3 + "/" + den3);
+        return num3 + "/" + den3;
     }
 }
+
 
