@@ -1791,62 +1791,142 @@ import java.util.Scanner;
 //    }
 //}
 
-class Smartphone {
-    // Private maydonlar - tashqaridan yashirin
-    private String model;
-    private int batteryLevel; // 0 dan 100 gacha bo'lishi shart
+//class Smartphone {
+//    // Private maydonlar - tashqaridan yashirin
+//    private String model;
+//    private int batteryLevel; // 0 dan 100 gacha bo'lishi shart
+//
+//    public Smartphone(String model, int initialBattery) {
+//        this.model = model;
+//        setBatteryLevel(initialBattery); // Tekshiruvdan o'tkazamiz
+//    }
+//
+//    // Getter - Modelni o'qish uchun
+//    public String getModel() {
+//        return model;
+//    }
+//
+//    // Getter - Batareya quvvatini ko'rish uchun
+//    public int getBatteryLevel() {
+//        return batteryLevel;
+//    }
+//
+//    // Setter - Batareya quvvatini xavfsiz o'zgartirish
+//    public void setBatteryLevel(int level) {
+//        if (level >= 0 && level <= 100) {
+//            this.batteryLevel = level;
+//        } else {
+//            System.out.println("Xato: Batareya quvvati 0-100 oralig'ida bo'lishi kerak!");
+//        }
+//    }
+//
+//    // Telefon ishlatilganda quvvat kamayishi
+//    public void useApp(String appName) {
+//        if (batteryLevel > 5) {
+//            System.out.println(appName + " ishga tushdi...");
+//            batteryLevel -= 5;
+//        } else {
+//            System.out.println("Quvvat kam! Ilovani ochib bo'lmaydi.");
+//        }
+//    }
+//}
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        Smartphone phone = new Smartphone("iPhone 15", 80);
+//
+//        // To'g'ridan-to'g'ri kirish imkonsiz (Xato beradi):
+//        // phone.batteryLevel = 150;
+//
+//        // Faqat ruxsat berilgan usul bilan o'zgartiramiz:
+//        phone.setBatteryLevel(95);
+//        System.out.println(phone.getModel() + " quvvati: " + phone.getBatteryLevel() + "%");
+//
+//        phone.useApp("Telegram");
+//        System.out.println("Hozirgi quvvat: " + phone.getBatteryLevel() + "%");
+//
+//        // Noto'g'ri qiymat berishga urinish:
+//        phone.setBatteryLevel(500); // Ekranda xatolik chiqadi, lekin qiymat o'zgarmaydi
+//    }
+//}
 
-    public Smartphone(String model, int initialBattery) {
-        this.model = model;
-        setBatteryLevel(initialBattery); // Tekshiruvdan o'tkazamiz
+
+import java.util.*;
+
+class Wall {
+    public String material;
+    public int high;
+
+    public Wall(String material, int high) {
+        this.material = material;
+        this.high = high;
     }
 
-    // Getter - Modelni o'qish uchun
-    public String getModel() {
-        return model;
+    @Override
+    public String toString() {
+        return "material is '" + material + '\'' +
+                ", high = " + high + " ft.";
+    }
+}
+
+class Furniture {
+    public String name;
+    public int cost;
+
+    public Furniture(String name, int cost) {
+        this.name = name;
+        this.cost = cost;
     }
 
-    // Getter - Batareya quvvatini ko'rish uchun
-    public int getBatteryLevel() {
-        return batteryLevel;
+    @Override
+    public String toString() {
+        return "\nname = '" + name + '\'' +
+                ", cost = $" + cost;
+    }
+}
+
+class Apartment {
+    public String street;
+    public int apartmentNo;
+    private Wall walls;
+    private Furniture[] furniture;
+
+    public Apartment(String street, int apartmentNo, String material, int high, Furniture[] furniture) {
+        this.street = street;
+        this.apartmentNo = apartmentNo;
+        walls = new Wall (material,high);
+        this.furniture = furniture;
     }
 
-    // Setter - Batareya quvvatini xavfsiz o'zgartirish
-    public void setBatteryLevel(int level) {
-        if (level >= 0 && level <= 100) {
-            this.batteryLevel = level;
-        } else {
-            System.out.println("Xato: Batareya quvvati 0-100 oralig'ida bo'lishi kerak!");
+    @Override
+    public String toString() {
+        return "The address is" +
+                " '" + street + " St' " +
+                apartmentNo + ", walls " + walls +
+                ", furniture=" + Arrays.toString(furniture);
+    }
+
+    public int getTotalFurnitureCost(Furniture[] furniture) {
+        int totalAmount = 0;
+        for (Furniture furnit : furniture) {
+            totalAmount += furnit.cost;
         }
-    }
-
-    // Telefon ishlatilganda quvvat kamayishi
-    public void useApp(String appName) {
-        if (batteryLevel > 5) {
-            System.out.println(appName + " ishga tushdi...");
-            batteryLevel -= 5;
-        } else {
-            System.out.println("Quvvat kam! Ilovani ochib bo'lmaydi.");
-        }
+        return totalAmount;
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        Smartphone phone = new Smartphone("iPhone 15", 80);
+        Furniture[] furniture = new Furniture[] {
+                new Furniture("bed", 150),
+                new Furniture("cupboard",250),
+                new Furniture("table", 35),
+                new Furniture("armchair", 80),
+        };
+        Apartment flat1 = new Apartment("Bronco", 3050,"brick", 23, furniture);
 
-        // To'g'ridan-to'g'ri kirish imkonsiz (Xato beradi):
-        // phone.batteryLevel = 150;
-
-        // Faqat ruxsat berilgan usul bilan o'zgartiramiz:
-        phone.setBatteryLevel(95);
-        System.out.println(phone.getModel() + " quvvati: " + phone.getBatteryLevel() + "%");
-
-        phone.useApp("Telegram");
-        System.out.println("Hozirgi quvvat: " + phone.getBatteryLevel() + "%");
-
-        // Noto'g'ri qiymat berishga urinish:
-        phone.setBatteryLevel(500); // Ekranda xatolik chiqadi, lekin qiymat o'zgarmaydi
+        System.out.println("Information about the first apartment:\n" + flat1);
+        System.out.println("Total furniture cost is: $" + flat1.getTotalFurnitureCost(furniture));
     }
 }
 
