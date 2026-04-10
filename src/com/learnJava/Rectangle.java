@@ -1955,36 +1955,104 @@ import java.util.Scanner;
 //    }
 //}
 
-public class Main {
-    public static void main(String[] args) {
-        int num1, den1;
-        int num2, den2;
+//public class Main {
+//    public static void main(String[] args) {
+//        int num1, den1;
+//        int num2, den2;
+//
+//        int num3, den3;
+//
+//        num1 = 1;
+//        den1 = 2;
+//
+//        num2 = 5;
+//        den2 = 6;
+//
+//        String result = add(num1, den1, num2, den2);
+//        String[] param = result.split("/");
+//
+//        num3 = Integer.parseInt(param[0]);
+//        den3 = Integer.parseInt(param[1]);
+//
+//        System.out.println(num3 + "/" + den3);
+//    }
+//
+//    public static String add(int n1, int d1, int n2, int d2) {
+//        int num3, den3;
+//
+//        den3 = d1 * d2;
+//        num3 = n1 * d2 + n2 * d1;
+//
+//        return num3 + "/" + den3;
+//    }
+//}
 
-        int num3, den3;
 
-        num1 = 1;
-        den1 = 2;
+import java.util.Objects;
 
-        num2 = 5;
-        den2 = 6;
+public class Rectangle {
+    private double sideA;
+    private double sideB;
 
-        String result = add(num1, den1, num2, den2);
-        String[] param = result.split("/");
-
-        num3 = Integer.parseInt(param[0]);
-        den3 = Integer.parseInt(param[1]);
-
-        System.out.println(num3 + "/" + den3);
+    // Ikki parametrli konstruktor
+    public Rectangle(double a, double b) {
+        this.sideA = a;
+        this.sideB = b;
     }
 
-    public static String add(int n1, int d1, int n2, int d2) {
-        int num3, den3;
+    // Kvadrat uchun bitta parametrli konstruktor
+    public Rectangle(double side) {
+        this(side, side);
+    }
 
-        den3 = d1 * d2;
-        num3 = n1 * d2 + n2 * d1;
+    // Parametrsiz konstruktor (A=4, B=3)
+    public Rectangle() {
+        this.sideA = 4;
+        this.sideB = 3;
+    }
 
-        return num3 + "/" + den3;
+    public double getSideA() {
+        return sideA;
+    }
+
+    public double getSideB() {
+        return sideB;
+    }
+
+    public double area() {
+        return sideA * sideB;
+    }
+
+    public double perimeter() {
+        return 2 * (sideA + sideB);
+    }
+
+    public boolean isSquare() {
+        return sideA == sideB;
+    }
+
+    public void replaceSides() {
+        double temp = sideA;
+        sideA = sideB;
+        sideB = temp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rectangle rectangle = (Rectangle) o;
+        return Double.compare(rectangle.sideA, sideA) == 0 &&
+                Double.compare(rectangle.sideB, sideB) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sideA, sideB);
+    }
+
+    @Override
+    public String toString() {
+        return "Rectangle{" + "sideA=" + sideA + ", sideB=" + sideB + '}';
     }
 }
-
-
