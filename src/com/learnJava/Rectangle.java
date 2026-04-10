@@ -1987,72 +1987,156 @@ import java.util.Scanner;
 //    }
 //}
 
+//
+//import java.util.Objects;
+//
+//public class Rectangle {
+//    private double sideA;
+//    private double sideB;
+//
+//    // Ikki parametrli konstruktor
+//    public Rectangle(double a, double b) {
+//        this.sideA = a;
+//        this.sideB = b;
+//    }
+//
+//    // Kvadrat uchun bitta parametrli konstruktor
+//    public Rectangle(double side) {
+//        this(side, side);
+//    }
+//
+//    // Parametrsiz konstruktor (A=4, B=3)
+//    public Rectangle() {
+//        this.sideA = 4;
+//        this.sideB = 3;
+//    }
+//
+//    public double getSideA() {
+//        return sideA;
+//    }
+//
+//    public double getSideB() {
+//        return sideB;
+//    }
+//
+//    public double area() {
+//        return sideA * sideB;
+//    }
+//
+//    public double perimeter() {
+//        return 2 * (sideA + sideB);
+//    }
+//
+//    public boolean isSquare() {
+//        return sideA == sideB;
+//    }
+//
+//    public void replaceSides() {
+//        double temp = sideA;
+//        sideA = sideB;
+//        sideB = temp;
+//    }
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Rectangle rectangle = (Rectangle) o;
+//        return Double.compare(rectangle.sideA, sideA) == 0 &&
+//                Double.compare(rectangle.sideB, sideB) == 0;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(sideA, sideB);
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "Rectangle{" + "sideA=" + sideA + ", sideB=" + sideB + '}';
+//    }
+//}
 
-import java.util.Objects;
 
-public class Rectangle {
-    private double sideA;
-    private double sideB;
+public class ArrayRectangles {
+    private Rectangle[] rectangleArray;
 
-    // Ikki parametrli konstruktor
-    public Rectangle(double a, double b) {
-        this.sideA = a;
-        this.sideB = b;
+    // Berilgan uzunlikda bo'sh massiv yaratish
+    public ArrayRectangles(int length) {
+        if (length <= 0) {
+            throw new IllegalArgumentException("Uzunlik musbat bo'lishi shart!");
+        }
+        this.rectangleArray = new Rectangle[length];
     }
 
-    // Kvadrat uchun bitta parametrli konstruktor
-    public Rectangle(double side) {
-        this(side, side);
+    // Tayyor massiv yoki bir nechta obyektlarni qabul qilish
+    public ArrayRectangles(Rectangle... rectangles) {
+        if (rectangles == null || rectangles.length == 0) {
+            throw new IllegalArgumentException("Massiv bo'sh bo'lishi mumkin emas!");
+        }
+        this.rectangleArray = rectangles;
     }
 
-    // Parametrsiz konstruktor (A=4, B=3)
-    public Rectangle() {
-        this.sideA = 4;
-        this.sideB = 3;
+    // Bo'sh joyga (null bo'lgan birinchi o'ringa) Rectangle qo'shish
+    public boolean addRectangle(Rectangle rectangle) {
+        for (int i = 0; i < rectangleArray.length; i++) {
+            if (rectangleArray[i] == null) {
+                rectangleArray[i] = rectangle;
+                return true;
+            }
+        }
+        return false;
     }
 
-    public double getSideA() {
-        return sideA;
+    // Amaldagi elementlar sonini qaytarish (null bo'lmaganlar)
+    public int size() {
+        int count = 0;
+        for (Rectangle r : rectangleArray) {
+            if (r != null) count++;
+        }
+        return count;
     }
 
-    public double getSideB() {
-        return sideB;
+    // Maksimal yuzaga ega birinchi to'rtburchak indeksini topish
+    public int indexMaxArea() {
+        int maxIndex = 0;
+        double maxArea = rectangleArray[0].area();
+
+        for (int i = 1; i < rectangleArray.length; i++) {
+            if (rectangleArray[i] != null && rectangleArray[i].area() > maxArea) {
+                maxArea = rectangleArray[i].area();
+                maxIndex = i;
+            }
+        }
+        return maxIndex;
     }
 
-    public double area() {
-        return sideA * sideB;
+    // Minimal perimetrga ega birinchi to'rtburchak indeksini topish
+    public int indexMinPerimeter() {
+        int minIndex = 0;
+        double minPerim = rectangleArray[0].perimeter();
+
+        for (int i = 1; i < rectangleArray.length; i++) {
+            if (rectangleArray[i] != null && rectangleArray[i].perimeter() < minPerim) {
+                minPerim = rectangleArray[i].perimeter();
+                minIndex = i;
+            }
+        }
+        return minIndex;
     }
 
-    public double perimeter() {
-        return 2 * (sideA + sideB);
-    }
-
-    public boolean isSquare() {
-        return sideA == sideB;
-    }
-
-    public void replaceSides() {
-        double temp = sideA;
-        sideA = sideB;
-        sideB = temp;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Rectangle rectangle = (Rectangle) o;
-        return Double.compare(rectangle.sideA, sideA) == 0 &&
-                Double.compare(rectangle.sideB, sideB) == 0;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(sideA, sideB);
-    }
-
-    @Override
-    public String toString() {
-        return "Rectangle{" + "sideA=" + sideA + ", sideB=" + sideB + '}';
+    // Kvadratlar sonini qaytarish
+    public int numberSquares() {
+        int count = 0;
+        for (Rectangle r : rectangleArray) {
+            if (r != null && r.isSquare()) {
+                count++;
+            }
+        }
+        return count;
     }
 }
+
+
+
+
